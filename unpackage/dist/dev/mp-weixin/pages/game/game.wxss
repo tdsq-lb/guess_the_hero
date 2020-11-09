@@ -125,12 +125,22 @@
   background-color: #d8d8d8;
   -webkit-border-radius: 2rpx;
           border-radius: 2rpx;
+  position: relative;
 }
 .content .audioBox .progress_bar_box .progress_bar .schedule {
   height: 100%;
   background-color: #1890ff;
   -webkit-border-radius: 2rpx;
           border-radius: 2rpx;
+}
+.content .audioBox .progress_bar_box .progress_bar .dots {
+  width: 10rpx;
+  height: 10rpx;
+  background-color: red;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  position: absolute;
+  top: -3rpx;
 }
 .content .audioBox .onplay_box {
   width: 100%;

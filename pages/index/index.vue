@@ -33,9 +33,6 @@
 				server: 21,
 			}
 		},
-		onLoad() {
-
-		},
 		methods: {
 			handleInputValue(e) {
 				this.$data.gameId = e.detail.value

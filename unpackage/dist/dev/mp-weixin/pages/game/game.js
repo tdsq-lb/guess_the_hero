@@ -97,6 +97,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var m0 = _vm.getImgUrl(_vm.topicItem.images)
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        m0: m0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -130,7 +139,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
 //
 //
 //
@@ -166,47 +176,72 @@ var _default =
 {
   data: function data() {
     return {
+      topicItem: {},
       isCorrect: true,
       visible: 0,
       audioSchedule: '0%',
+      audioLeft: '0%',
       btnIconfont: 'icon-bofang1',
-      value: '' };
+      value: '',
+      isplay: true };
 
   },
+  created: function created() {
+    this.initData();
+  },
   methods: {
+    initData: function initData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                _this.$data.isCorrect = true;_context.next = 3;return (
+                  _this.$myRequest({
+                    url: "/api/topic" }));case 3:result = _context.sent;
+
+                _this.$data.topicItem = result.data;case 5:case "end":return _context.stop();}}}, _callee);}))();
+    },
     handleVisible: function handleVisible() {
       this.$data.visible = Math.ceil(Math.random() * 4);
     },
-    handleAudio: function handleAudio() {var _this = this;
+    handleAudio: function handleAudio() {var _this2 = this;
       var innerAudioContext = uni.createInnerAudioContext();
-      innerAudioContext.autoplay = true;
-      innerAudioContext.src = '/static/audio/anni.mp3';
-      innerAudioContext.onPlay(function () {
-        _this.$data.btnIconfont = 'icon-bofang';
-        var timer = setInterval(function () {
-          var number = innerAudioContext.currentTime / innerAudioContext.duration;
-          var perNumber = (number * 100).toFixed(2);
-          if (perNumber >= 100) {
-            clearInterval(timer);
-          }
-          perNumber += '%';
-          _this.$data.audioSchedule = perNumber;
+      var ispaly = this.$data.isplay;
+      if (ispaly) {
+        this.$data.isplay = false;
+        innerAudioContext.autoplay = true;
+        innerAudioContext.src = this.getAudioUrl();
+        innerAudioContext.onPlay(function () {
+          _this2.$data.btnIconfont = 'icon-bofang';
+          var timer = setInterval(function () {
+            var number = innerAudioContext.currentTime / innerAudioContext.duration;
+            var perNumber = (number * 100).toFixed(2);
+            if (perNumber >= 100) {
+              clearInterval(timer);
+            }
+            perNumber += '%';
+            _this2.$data.audioSchedule = perNumber;
+            _this2.$data.audioLeft = perNumber;
+          });
+          console.log('开始播放');
         });
-        console.log('开始播放');
-      });
+      }
       innerAudioContext.onEnded(function () {
         console.log('播放结束');
-        _this.$data.btnIconfont = 'icon-bofang1';
-        _this.$data.audioSchedule = '0%';
+        _this2.$data.isplay = true;
+        _this2.$data.btnIconfont = 'icon-bofang1';
+        _this2.$data.audioSchedule = '0%';
+        _this2.$data.audioLeft = '0%';
       });
       innerAudioContext.onError(function (res) {
         console.log(res.errMsg);
         console.log(res.errCode);
       });
     },
-    handleInput: function handleInput(e) {
-      console.log(e.detail.value);
-      if (e.detail.value == '安妮') {
+    handleInputValue: function handleInputValue(e) {
+      this.$data.value = e.detail.value;
+    },
+    handleInput: function handleInput(e) {var _this3 = this;
+      var name = this.$data.topicItem.name;
+      var value = e.detail.value;
+      var istrue = name.includes(value);
+      if (istrue) {
         this.$data.isCorrect = false;
         uni.showModal({
           showCancel: false,
@@ -215,6 +250,8 @@ var _default =
           success: function success(res) {
             if (res.confirm) {
               console.log('用户点击确定');
+              _this3.$data.value = '';
+              _this3.initData();
             }
           } });
 
@@ -230,6 +267,16 @@ var _default =
           } });
 
       }
+    },
+    getImgUrl: function getImgUrl(img) {
+      var imgurl = "http://127.0.0.1:3000/static/images/".concat(img);
+      return imgurl;
+    },
+    getAudioUrl: function getAudioUrl() {
+      var BASE_URL = 'http://127.0.0.1:3000/static/wav/';
+      var audiourl = this.$data.topicItem.wav;
+      var data = BASE_URL + audiourl[Math.floor(Math.random() * audiourl.length)];
+      return data;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -6,7 +6,7 @@
 			</view>
 		</view>
 		<view class="banner">
-			<image src="../../static/images/big1000.jpg" mode="scaleToFill" lazy-load></image>
+			<image :src="getImgUrl(topicItem.images)" mode="scaleToFill" lazy-load></image>
 			<view class="mask" v-show="isCorrect">
 				<view :class="visible === 1 ? 'display' : 'mask_item left_top'"></view>
 				<view :class="visible === 2 ? 'display' : 'mask_item right_top'"></view>
@@ -18,6 +18,7 @@
 			<view class="progress_bar_box">
 				<view class="progress_bar">
 					<view class="schedule" :style="{width:audioSchedule}"></view>
+					<view class="dots" :style="{left:audioLeft}"></view>
 				</view>
 			</view>
 			<view class="onplay_box">
@@ -25,7 +26,7 @@
 			</view>
 		</view>
 		<view class="main">
-			<input type="text" :value="value" placeholder="请输入英雄名称" @confirm="handleInput" />
+			<input type="text" :value="value" placeholder="请输入英雄名称" @input="handleInputValue" @confirm="handleInput" />
 		</view>
 	</view>
 </template>
@@ -34,55 +35,82 @@
 	export default {
 		data() {
 			return {
+				topicItem: {},
 				isCorrect: true,
 				visible: 0,
 				audioSchedule: '0%',
+				audioLeft: '0%',
 				btnIconfont: 'icon-bofang1',
-				value: ''
+				value: '',
+				isplay: true
 			}
 		},
+		created() {
+			this.initData()
+		},
 		methods: {
+			async initData() {
+				this.$data.isCorrect = true;
+				const result = await this.$myRequest({
+					url: `/api/topic`
+				})
+				this.$data.topicItem = result.data
+			},
 			handleVisible() {
 				this.$data.visible = Math.ceil(Math.random() * 4)
 			},
 			handleAudio() {
 				const innerAudioContext = uni.createInnerAudioContext();
-				innerAudioContext.autoplay = true;
-				innerAudioContext.src = '/static/audio/anni.mp3';
-				innerAudioContext.onPlay(() => {
-					this.$data.btnIconfont = 'icon-bofang'
-					const timer = setInterval(() => {
-						const number = innerAudioContext.currentTime / innerAudioContext.duration
-						let perNumber = (number * 100).toFixed(2)
-						if (perNumber >= 100) {
-							clearInterval(timer)
-						}
-						perNumber += '%'
-						this.$data.audioSchedule = perNumber
-					})
-					console.log('开始播放');
-				});
+				const ispaly = this.$data.isplay
+				if (ispaly) {
+					this.$data.isplay = false
+					innerAudioContext.autoplay = true;
+					innerAudioContext.src = this.getAudioUrl();
+					innerAudioContext.onPlay(() => {
+						this.$data.btnIconfont = 'icon-bofang'
+						const timer = setInterval(() => {
+							const number = innerAudioContext.currentTime / innerAudioContext.duration
+							let perNumber = (number * 100).toFixed(2)
+							if (perNumber >= 100) {
+								clearInterval(timer)
+							}
+							perNumber += '%'
+							this.$data.audioSchedule = perNumber
+							this.$data.audioLeft = perNumber
+						})
+						console.log('开始播放');
+					});
+				}
 				innerAudioContext.onEnded(() => {
 					console.log('播放结束')
+					this.$data.isplay = true
 					this.$data.btnIconfont = 'icon-bofang1'
 					this.$data.audioSchedule = '0%'
+					this.$data.audioLeft = '0%'
 				})
 				innerAudioContext.onError((res) => {
 					console.log(res.errMsg);
 					console.log(res.errCode);
 				})
 			},
+			handleInputValue(e){
+				this.$data.value = e.detail.value
+			},
 			handleInput(e) {
-				console.log(e.detail.value)
-				if (e.detail.value == '安妮') {
-					this.$data.isCorrect = false
+				const name = this.$data.topicItem.name
+				const value = e.detail.value
+				const istrue = name.includes(value)
+				if (istrue) {
+					this.$data.isCorrect = false;
 					uni.showModal({
 						showCancel: false,
 						content: '答案正确',
 						confirmText: '下一题',
-						success: function(res) {
+						success: (res) => {
 							if (res.confirm) {
 								console.log('用户点击确定');
+								this.$data.value = ''
+								this.initData()
 							}
 						}
 					});
@@ -98,6 +126,16 @@
 						}
 					});
 				}
+			},
+			getImgUrl(img) {
+				const imgurl = `http://127.0.0.1:3000/static/images/${img}`
+				return imgurl
+			},
+			getAudioUrl() {
+				const BASE_URL = 'http://127.0.0.1:3000/static/wav/'
+				const audiourl = this.$data.topicItem.wav
+				const data = BASE_URL + audiourl[Math.floor(Math.random() * audiourl.length)]
+				return data
 			}
 		}
 	}
@@ -207,11 +245,21 @@
 					height: 5rpx;
 					background-color: #d8d8d8;
 					border-radius: 2rpx;
+					position: relative;
 
 					.schedule {
 						height: 100%;
 						background-color: #1890ff;
 						border-radius: 2rpx;
+					}
+
+					.dots {
+						width: 10rpx;
+						height: 10rpx;
+						background-color: red;
+						border-radius: 50%;
+						position: absolute;
+						top: -3rpx;
 					}
 				}
 			}

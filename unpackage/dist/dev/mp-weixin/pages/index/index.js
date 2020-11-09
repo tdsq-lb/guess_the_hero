@@ -171,9 +171,6 @@ var _default =
       server: 21 };
 
   },
-  onLoad: function onLoad() {
-
-  },
   methods: {
     handleInputValue: function handleInputValue(e) {
       this.$data.gameId = e.detail.value;
