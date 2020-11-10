@@ -128,6 +128,7 @@
   position: relative;
 }
 .content .audioBox .progress_bar_box .progress_bar .schedule {
+  width: 100%;
   height: 100%;
   background-color: #1890ff;
   -webkit-border-radius: 2rpx;
@@ -140,6 +141,7 @@
   -webkit-border-radius: 50%;
           border-radius: 50%;
   position: absolute;
+  left: 50rpx;
   top: -3rpx;
 }
 .content .audioBox .onplay_box {

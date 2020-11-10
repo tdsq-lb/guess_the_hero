@@ -17,8 +17,9 @@
 		<view class="audioBox">
 			<view class="progress_bar_box">
 				<view class="progress_bar">
-					<view class="schedule" :style="{width:audioSchedule}"></view>
-					<view class="dots" :style="{left:audioLeft}"></view>
+					<view class="schedule" :style="{width:audioSchedule}">
+						<view class="dots" :style="{left:audioLeft}"></view>
+					</view>
 				</view>
 			</view>
 			<view class="onplay_box">
@@ -54,6 +55,7 @@
 				const result = await this.$myRequest({
 					url: `/api/topic`
 				})
+				console.log(result.data, '<<<<<<<<<<=============')
 				this.$data.topicItem = result.data
 			},
 			handleVisible() {
@@ -70,30 +72,30 @@
 						this.$data.btnIconfont = 'icon-bofang'
 						const timer = setInterval(() => {
 							const number = innerAudioContext.currentTime / innerAudioContext.duration
-							let perNumber = (number * 100).toFixed(2)
+							let perNumber = (number * 120).toFixed(2)
 							if (perNumber >= 100) {
 								clearInterval(timer)
 							}
 							perNumber += '%'
-							this.$data.audioSchedule = perNumber
 							this.$data.audioLeft = perNumber
+							this.$data.audioSchedule = perNumber
 						})
 						console.log('开始播放');
 					});
+					innerAudioContext.onEnded(() => {
+						console.log('播放结束')
+						this.$data.isplay = true
+						this.$data.btnIconfont = 'icon-bofang1'
+						this.$data.audioSchedule = '0%'
+						this.$data.audioLeft = '0%'
+					})
+					innerAudioContext.onError((res) => {
+						console.log(res.errMsg);
+						console.log(res.errCode);
+					})
 				}
-				innerAudioContext.onEnded(() => {
-					console.log('播放结束')
-					this.$data.isplay = true
-					this.$data.btnIconfont = 'icon-bofang1'
-					this.$data.audioSchedule = '0%'
-					this.$data.audioLeft = '0%'
-				})
-				innerAudioContext.onError((res) => {
-					console.log(res.errMsg);
-					console.log(res.errCode);
-				})
 			},
-			handleInputValue(e){
+			handleInputValue(e) {
 				this.$data.value = e.detail.value
 			},
 			handleInput(e) {
@@ -128,11 +130,11 @@
 				}
 			},
 			getImgUrl(img) {
-				const imgurl = `http://127.0.0.1:3000/static/images/${img}`
+				const imgurl = `https://tdsq.top/static/images/${img}`
 				return imgurl
 			},
 			getAudioUrl() {
-				const BASE_URL = 'http://127.0.0.1:3000/static/wav/'
+				const BASE_URL = 'https://tdsq.top/static/wav/'
 				const audiourl = this.$data.topicItem.wav
 				const data = BASE_URL + audiourl[Math.floor(Math.random() * audiourl.length)]
 				return data
@@ -248,9 +250,11 @@
 					position: relative;
 
 					.schedule {
+						width: 100%;
 						height: 100%;
 						background-color: #1890ff;
 						border-radius: 2rpx;
+
 					}
 
 					.dots {
@@ -259,6 +263,7 @@
 						background-color: red;
 						border-radius: 50%;
 						position: absolute;
+						left: 50rpx;
 						top: -3rpx;
 					}
 				}

@@ -1,6 +1,9 @@
 <template>
 	<view class="content">
 		<!-- https://www.lolhelper.cn/index.php -->
+		<view class="head">
+			<image src="../../static/images/logo-public.png" mode=""></image>
+		</view>
 		<view class="main">
 			<view class="option">
 				<view class="option_item">
@@ -90,6 +93,15 @@
 		background-size: 100% 100%;
 		width: 100%;
 		height: 100%;
+
+		.head {
+			image {
+				width: 334rpx;
+				height: 120rpx;
+				margin: 0 auto;
+				display: block
+			}
+		}
 
 		.main {
 			position: absolute;

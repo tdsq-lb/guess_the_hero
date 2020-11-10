@@ -1,20 +1,46 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
-			"style": {
-			}
-		}, {
 			"path": "pages/game/game",
-			"style": {
-			}
-
+			"style": {}
+		}, {
+			"path": "pages/user/user",
+			"style": {}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {}
+		}, {
+			"path": "pages/list/list",
+			"style": {}
 		}
 	],
+	"tabBar": {
+		"color": "#FFFFFF",
+		"selectedColor": "#fbe589",
+		"backgroundColor": "#000000",
+		// active
+		"list": [{
+				"pagePath": "pages/game/game",
+				"iconPath": "static/images/挑战.png",
+				"selectedIconPath": "static/images/挑战_active.png"
+			},
+			{
+				"pagePath": "pages/list/list",
+				"iconPath": "static/images/排行_active.png",
+				"selectedIconPath": "static/images/排行.png"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"iconPath": "static/images/英雄.png",
+				"selectedIconPath": "static/images/英雄_active.png"
+			}
+		]
+	},
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarTitleText": "台词猜英雄",
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#000",
 		"backgroundColor": "#F8F8F8"
 	}
 }

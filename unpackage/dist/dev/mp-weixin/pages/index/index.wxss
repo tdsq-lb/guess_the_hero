@@ -32,6 +32,12 @@
   width: 100%;
   height: 100%;
 }
+.content .head image {
+  width: 334rpx;
+  height: 120rpx;
+  margin: 0 auto;
+  display: block;
+}
 .content .main {
   position: absolute;
   width: 100%;
