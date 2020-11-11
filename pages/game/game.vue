@@ -27,15 +27,19 @@
 			</view>
 		</view>
 		<view class="main">
-			<input type="text" :value="value" placeholder="请输入英雄名称" @input="handleInputValue" @confirm="handleInput" />
+			<input type="text" :value="value" placeholder="请输入英雄名称" @focus="handleIsLogin" @input="handleInputValue" @confirm="handleInput" />
 		</view>
 	</view>
 </template>
 
 <script>
+	import {
+		isLogin
+	} from '../../util/isLogin.js'
 	export default {
 		data() {
 			return {
+				isLogin: null,
 				topicItem: {},
 				isCorrect: true,
 				visible: 0,
@@ -47,25 +51,33 @@
 			}
 		},
 		created() {
+
 			this.initData()
 		},
 		methods: {
+			// 获取答题数据
 			async initData() {
 				this.$data.isCorrect = true;
 				const result = await this.$myRequest({
 					url: `/api/topic`
 				})
-				console.log(result.data, '<<<<<<<<<<=============')
 				this.$data.topicItem = result.data
 			},
+			// 提示
 			handleVisible() {
-				this.$data.visible = Math.ceil(Math.random() * 4)
+				this.$data.isLogin = isLogin()
+				if (this.$data.isLogin) {
+					this.$data.visible = Math.ceil(Math.random() * 4)
+				}
 			},
+			// 语言播放
 			handleAudio() {
-				const innerAudioContext = uni.createInnerAudioContext();
+				this.$data.isLogin = isLogin()
+				const islogin = this.$data.isLogin
 				const ispaly = this.$data.isplay
-				if (ispaly) {
+				if (islogin && ispaly) {
 					this.$data.isplay = false
+					const innerAudioContext = uni.createInnerAudioContext();
 					innerAudioContext.autoplay = true;
 					innerAudioContext.src = this.getAudioUrl();
 					innerAudioContext.onPlay(() => {
@@ -95,15 +107,26 @@
 					})
 				}
 			},
+			// 输入框聚焦时触发，判断是登陆
+			handleIsLogin(e) {
+				this.$data.isLogin = isLogin()
+			},
+			// 输入时触发，动态绑定输入框的value值
 			handleInputValue(e) {
 				this.$data.value = e.detail.value
 			},
+			// 点击完成按钮时触发 判断输入值是否正确
 			handleInput(e) {
+				const userid = this.$data.isLogin.id
+				console.log(userid)
 				const name = this.$data.topicItem.name
 				const value = e.detail.value
 				const istrue = name.includes(value)
 				if (istrue) {
 					this.$data.isCorrect = false;
+					const result = this.$myRequest({
+						url: `/api/answer?userid=${userid}`
+					})
 					uni.showModal({
 						showCancel: false,
 						content: '答案正确',
@@ -138,7 +161,7 @@
 				const audiourl = this.$data.topicItem.wav
 				const data = BASE_URL + audiourl[Math.floor(Math.random() * audiourl.length)]
 				return data
-			}
+			},
 		}
 	}
 </script>

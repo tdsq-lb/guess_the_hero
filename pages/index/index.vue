@@ -1,6 +1,5 @@
 <template>
 	<view class="content">
-		<!-- https://www.lolhelper.cn/index.php -->
 		<view class="head">
 			<image src="../../static/images/logo-public.png" mode=""></image>
 		</view>
@@ -29,11 +28,11 @@
 		data() {
 			return {
 				gameId: '男神灬彪',
-				array: ['请选择大区', '艾欧尼亚', '比尔吉沃特', '祖安', '诺克萨斯	', '班德尔城', '德玛西亚', '皮尔特沃夫', '战争学院', '弗雷尔卓德', '巨神峰', '雷瑟守备', '无畏先锋',
-					'裁决之地',
-					'黑色玫瑰', '暗影岛', '恕瑞玛', '钢铁烈阳', '水晶之痕', '均衡教派', '扭曲丛林', '影流', '守望之海', '征服之海', '卡拉曼达', '巨龙之巢', '皮城警备', '男爵领域'
+				array: ['请选择大区', '艾欧尼亚', '比尔吉沃特', '祖安', '诺克萨斯', '班德尔城', '德玛西亚', '皮尔特沃夫', '战争学院', '弗雷尔卓德', '巨神峰', '雷瑟守备', '无畏先锋',
+					'裁决之地', '黑色玫瑰', '暗影岛', '恕瑞玛', '钢铁烈阳', '水晶之痕', '均衡教派', '扭曲丛林', '教育专区', '影流', '守望之海', '征服之海', '卡拉曼达', '巨龙之巢',
+					'皮城警备', '男爵领域'
 				],
-				server: 21,
+				server: 22,
 			}
 		},
 		methods: {
@@ -46,17 +45,26 @@
 			},
 			async handleStart() {
 				const gameId = this.$data.gameId
-				const server = this.$data.server + 1
+				const server = this.$data.server
 				if (gameId && server) {
 					const result = await this.$myRequest({
 						url: `/api/userinfo?gameid=${gameId}&server=${server}`
 					})
 					if (result.data.id > 0) {
-						uni.navigateTo({
-							url: '../game/game',
-							animationType: 'zoom-fade-out',
-							animationDuration: 200
-						})
+						uni.setStorage({
+							key: 'USER-INFO',
+							data: result.data,
+							success: () => {
+								uni.showToast({
+									icon: "none",
+									title: '登陆成功',
+									duration: 2000
+								});
+								uni.switchTab({
+									url: '../game/game',
+								})
+							}
+						});
 					} else {
 						uni.showModal({
 							showCancel: false,

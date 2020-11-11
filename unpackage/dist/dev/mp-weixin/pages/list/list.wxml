@@ -1,1 +1,1 @@
-<view></view>
+<view class="content"><view class="banner"><image src="../../static/images/927_2020091625641414.jpg" mode></image></view><view class="box"><block wx:for="{{$root.l0}}" wx:for-item="item" wx:for-index="index" wx:key="id"><view class="item"><view class="item-user"><image class="rank" src="{{item.m0}}" mode></image><image class="avatar" src="{{item.m1}}" mode></image><text class="name">{{item.$orig.name}}</text></view><text class="answer">{{''+item.$orig.week_topic+''}}</text></view></block></view></view>

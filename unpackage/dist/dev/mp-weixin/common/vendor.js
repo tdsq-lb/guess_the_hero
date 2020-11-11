@@ -8033,6 +8033,7 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequest = void 0;var BASE_URL = "https://tdsq.top";
+// const BASE_URL = "http://localhost:3000"
 
 var myRequest = function myRequest(options) {
   return new Promise(function (resolve, reject) {
@@ -8855,6 +8856,42 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
+
+/***/ }),
+/* 21 */
+/*!***********************************************!*\
+  !*** F:/台词猜英雄/guess_the_hero/util/isLogin.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.isLogin = void 0;var isLogin = function isLogin() {
+  var islogin = {};
+  uni.getStorage({
+    key: 'USER-INFO',
+    success: function success(res) {
+      islogin = res.data;
+    },
+    fail: function fail(err) {
+      uni.showModal({
+        showCancel: false,
+        content: '还未登陆，请先登陆',
+        confirmText: '确定',
+        success: function success(res) {
+          if (res.confirm) {
+            uni.redirectTo({
+              url: '../index/index' });
+
+          }
+        } });
+
+      islogin = false;
+    } });
+
+  return islogin;
+};exports.isLogin = isLogin;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 ]]);
