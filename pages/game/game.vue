@@ -51,7 +51,6 @@
 			}
 		},
 		created() {
-
 			this.initData()
 		},
 		methods: {
@@ -153,8 +152,9 @@
 				}
 			},
 			getImgUrl(img) {
-				const imgurl = `https://tdsq.top/static/images/${img}`
-				return imgurl
+				if (img) {
+					return `https://tdsq.top/static/images/${img}`
+				}
 			},
 			getAudioUrl() {
 				const BASE_URL = 'https://tdsq.top/static/wav/'
@@ -169,7 +169,7 @@
 <style lang="scss">
 	.content {
 		position: absolute;
-		background-image: url(https://i.loli.net/2020/11/06/W6XJaI7SfxbR8Vc.png);
+		background-image: url(https://tdsq.top/static/images/game_bg.jpg);
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
 		width: 100%;

@@ -161,9 +161,8 @@ var _isLogin = __webpack_require__(/*! ../../util/isLogin.js */ 21); //
 //
 //
 //
-var _default = { data: function data() {return { userdata: null };}, created: function created() {this.$data.userdata = (0, _isLogin.isLogin)();console.log((0, _isLogin.isLogin)());}, methods: { // 删除用户
-    handleRemoveUser: function handleRemoveUser() {uni.removeStorage({
-        key: 'USER-INFO',
+var _default = { data: function data() {return { userdata: null };}, created: function created() {this.$data.userdata = (0, _isLogin.isLogin)();}, methods: { // 删除用户
+    handleRemoveUser: function handleRemoveUser() {uni.removeStorage({ key: 'USER-INFO',
         success: function success(res) {
           uni.redirectTo({
             url: '../index/index' });

@@ -198,7 +198,6 @@ var _isLogin = __webpack_require__(/*! ../../util/isLogin.js */ 21);function _in
 
   },
   created: function created() {
-
     this.initData();
   },
   methods: {
@@ -300,8 +299,9 @@ var _isLogin = __webpack_require__(/*! ../../util/isLogin.js */ 21);function _in
       }
     },
     getImgUrl: function getImgUrl(img) {
-      var imgurl = "https://tdsq.top/static/images/".concat(img);
-      return imgurl;
+      if (img) {
+        return "https://tdsq.top/static/images/".concat(img);
+      }
     },
     getAudioUrl: function getAudioUrl() {
       var BASE_URL = 'https://tdsq.top/static/wav/';

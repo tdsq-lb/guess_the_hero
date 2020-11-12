@@ -1,11 +1,10 @@
 export const isLogin = () => {
 	var islogin = {}
-	uni.getStorage({
-		key: 'USER-INFO',
-		success: (res) => {
-			islogin = res.data
-		},
-		fail: (err) => {
+	try {
+		const value = uni.getStorageSync('USER-INFO');
+		if (value) {
+			islogin = value;
+		} else {
 			uni.showModal({
 				showCancel: false,
 				content: '还未登陆，请先登陆',
@@ -19,7 +18,9 @@ export const isLogin = () => {
 				}
 			});
 			islogin = false
-		},
-	});
+		}
+	} catch (e) {
+		// error
+	}
 	return islogin
 }

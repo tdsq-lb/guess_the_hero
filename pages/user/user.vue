@@ -25,7 +25,6 @@
 		},
 		created() {
 			this.$data.userdata = isLogin()
-			console.log(isLogin())
 		},
 		methods: {
 			// 删除用户
@@ -44,19 +43,20 @@
 </script>
 
 <style lang="scss">
-	page {
-		height: 100%;
-	}
+	// page {
+	// 	height: 100%;
+	// }
 
 	.content {
+		position: absolute;
 		width: 100%;
 		height: 100%;
-		background-image: url(../../static/images/wave_p.jpg);
-		background-size: 100%;
+		background-image: url(https://tdsq.top/static/images/user_bg.jpg);
+		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		padding: 40rpx;
 		box-sizing: border-box;
-		position: relative;
+		// position: relative;
 
 		.title {
 			position: absolute;

@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="banner">
-			<image src="../../static/images/927_2020091625641414.jpg" mode=""></image>
+			<image src="https://tdsq.top/static/images/list_bg.jpg" mode=""></image>
 		</view>
 		<view class="box">
 			<view class="item" v-for="(item,index) in data" :key="item.id">
@@ -49,13 +49,14 @@
 </script>
 
 <style lang="scss">
-	page {
-		height: auto;
-	}
+	// page {
+	// 	height: 100%;
+	// }
 
 	.content {
+		position: absolute;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
 		background-color: #fde9b4;
 
 		image {

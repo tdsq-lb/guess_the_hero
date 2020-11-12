@@ -96,7 +96,7 @@
 <style lang="scss">
 	.content {
 		position: absolute;
-		background-image: url(https://i.loli.net/2020/11/05/3B5wFKXIz6ibAtT.jpg);
+		background-image: url(https://tdsq.top/static/images/index_bg.jpg);
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
 		width: 100%;
@@ -124,7 +124,7 @@
 
 				.option_item {
 					width: 100%;
-					height: 35px;
+					height: 70rpx;
 					position: relative;
 					margin: 0 0 16px;
 					text-align: center;
@@ -150,17 +150,17 @@
 					}
 
 					.start {
-						width: 234px;
-						height: 46px;
+						width: 100%;
+						height: 92rpx;
 						background: url(../../static/images/ycfcx.png) no-repeat;
-						background-size: contain;
+						background-size: 100%;
 						display: inline-block;
 						text-align: center;
 						color: #fff;
 						font-size: 18px;
 						font-weight: 600;
 						letter-spacing: 3px;
-						line-height: 46px;
+						line-height: 92rpx;
 					}
 				}
 			}

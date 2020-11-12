@@ -8868,12 +8868,11 @@ if (hadRuntime) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.isLogin = void 0;var isLogin = function isLogin() {
   var islogin = {};
-  uni.getStorage({
-    key: 'USER-INFO',
-    success: function success(res) {
-      islogin = res.data;
-    },
-    fail: function fail(err) {
+  try {
+    var value = uni.getStorageSync('USER-INFO');
+    if (value) {
+      islogin = value;
+    } else {
       uni.showModal({
         showCancel: false,
         content: '还未登陆，请先登陆',
@@ -8887,8 +8886,10 @@ if (hadRuntime) {
         } });
 
       islogin = false;
-    } });
-
+    }
+  } catch (e) {
+    // error
+  }
   return islogin;
 };exports.isLogin = isLogin;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
