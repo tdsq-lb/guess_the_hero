@@ -13,6 +13,8 @@
 		}, {
 			"path": "pages/list/list",
 			"style": {}
+		}, {
+			"path": "component/power"
 		}
 	],
 	"tabBar": {

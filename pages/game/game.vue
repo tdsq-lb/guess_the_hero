@@ -1,6 +1,9 @@
 <template>
 	<view class="content">
 		<view class="head">
+			<view class="power">
+				<Power ref="powerRef" />
+			</view>
 			<view class="tips" @click="handleVisible">
 				<text class="iconfont icon-tishi"></text>提示
 			</view>
@@ -36,6 +39,7 @@
 	import {
 		isLogin
 	} from '../../util/isLogin.js'
+	import Power from 'component/power.vue'
 	export default {
 		data() {
 			return {
@@ -49,6 +53,9 @@
 				value: '',
 				isplay: true
 			}
+		},
+		components: {
+			Power
 		},
 		created() {
 			this.initData()
@@ -64,6 +71,7 @@
 			},
 			// 提示
 			handleVisible() {
+				this.$refs.powerRef.handlePowerRef()
 				this.$data.isLogin = isLogin()
 				if (this.$data.isLogin) {
 					this.$data.visible = Math.ceil(Math.random() * 4)
@@ -180,7 +188,13 @@
 		.head {
 			width: 100%;
 			height: 40rpx;
+			color: #FFFFFF;
+			display: flex;
 			position: relative;
+			
+			.power{
+				
+			}
 
 			.tips {
 				width: 20%;
