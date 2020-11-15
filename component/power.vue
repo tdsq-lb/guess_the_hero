@@ -20,13 +20,15 @@
 		},
 		created() {
 			const power = getPower()
+			if (!power) {
+				setPower(5)
+				this.$data.count = getPower()
+			}
 			this.$data.count = power
-			const currentTime = Date.parse(new Date()) //	当前时间
-			const second = parseInt(((currentTime - getTimeStamp()) / 1000) / 60)
-			let num = parseInt(second / 2)
-			if (this.$data.count >= 5) {
-				this.$data.count = 5
-			} else {
+			if (this.$data.count !== 5) {
+				const currentTime = Date.parse(new Date()) //	当前时间
+				const second = parseInt(((currentTime - getTimeStamp()) / 1000) / 60)
+				let num = parseInt(second / 2)
 				this.$data.count += num
 				this.timers()
 			}
@@ -37,9 +39,8 @@
 				const count = this.$data.count - 1
 				if (count >= 0) {
 					this.$data.count = count
-					if (!this.$data.timer) {
-						this.timers()
-					}
+					this.timers()
+					
 					setTimeStamp()
 					setPower(this.$data.count)
 				} else {
@@ -56,20 +57,19 @@
 				}
 			},
 			AddPower() {
-				let count = this.$data.count + 1
-				console.log(count, '体力已满=============>>>>>')
-				if (count <= 5) {
-					this.$data.count = count
+				let count = this.$data.count
+				if (count == 5) {
+					clearInterval(this.timer)
+				} else {
+					this.$data.count = count + 1
+					console.log(this.$data.count, '加体力=============>>>>>')
 					setTimeStamp()
 					setPower(this.$data.count)
-					clearInterval(this.timer);
-					if (count == 5) {
-						
-					}
 				}
 			},
 			timers() {
-				this.timer = setInterval(this.AddPower, 60000);
+				clearInterval(this.timer)
+				this.timer = setInterval(this.AddPower, 10000)
 			}
 		},
 		mounted() {

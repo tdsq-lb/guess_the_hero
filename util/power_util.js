@@ -26,11 +26,12 @@ export const setPower = (data) => {
 export const getPower = () => {
 	try {
 		const value = uni.getStorageSync('SET-POWER');
-		if (value) {
-			return value
-		}else{
-			return 0
-		}
+		// if (value) {
+		// 	return value
+		// }else{
+		// 	return 0
+		// }
+		return value
 	} catch (e) {
 		// error
 	}
