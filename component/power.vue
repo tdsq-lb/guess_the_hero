@@ -19,18 +19,23 @@
 			}
 		},
 		created() {
+			console.log(undefined === false)
 			const power = getPower()
 			if (!power) {
 				setPower(5)
 				this.$data.count = getPower()
+			} else {
+				this.$data.count = getPower()
 			}
-			this.$data.count = power
 			if (this.$data.count !== 5) {
 				const currentTime = Date.parse(new Date()) //	当前时间
 				const second = parseInt(((currentTime - getTimeStamp()) / 1000) / 60)
 				let num = parseInt(second / 2)
-				this.$data.count += num
-				this.timers()
+				if (!num) {
+					console.log('进来这')
+					this.$data.count += num
+					this.timers()
+				}
 			}
 
 		},
@@ -40,7 +45,6 @@
 				if (count >= 0) {
 					this.$data.count = count
 					this.timers()
-					
 					setTimeStamp()
 					setPower(this.$data.count)
 				} else {

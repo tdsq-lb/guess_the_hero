@@ -3,7 +3,8 @@
     "pages/game/game",
     "pages/user/user",
     "pages/index/index",
-    "pages/list/list"
+    "pages/list/list",
+    "component/power"
   ],
   "subPackages": [],
   "window": {
@@ -34,6 +35,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap80.json"
+  "usingComponents": {}
 }

@@ -17,7 +17,8 @@
 				<view :class="visible === 4 ? 'display' : 'mask_item right_bottom'"></view>
 			</view>
 		</view>
-		<view class="audioBox">
+		<imtAudio :src="topicItem.wav" />
+		<!-- 	<view class="audioBox">
 			<view class="progress_bar_box">
 				<view class="progress_bar">
 					<view class="schedule" :style="{width:audioSchedule}">
@@ -27,8 +28,9 @@
 			</view>
 			<view class="onplay_box">
 				<view class="iconfont" :class="btnIconfont" @click="handleAudio"></view>
-			</view>
-		</view>
+			</view> -->
+
+		<!-- </view> -->
 		<view class="main">
 			<input type="text" :value="value" placeholder="请输入英雄名称" @focus="handleIsLogin" @input="handleInputValue" @confirm="handleInput" />
 		</view>
@@ -40,11 +42,13 @@
 		isLogin
 	} from '../../util/isLogin.js'
 	import Power from 'component/power.vue'
+	import imtAudio from '../../component/imt-audio.vue'
 	export default {
 		data() {
 			return {
 				isLogin: null,
 				topicItem: {},
+				now: 0,
 				isCorrect: true,
 				visible: 0,
 				audioSchedule: '0%',
@@ -55,7 +59,8 @@
 			}
 		},
 		components: {
-			Power
+			Power,
+			imtAudio
 		},
 		created() {
 			this.initData()
@@ -68,12 +73,13 @@
 					url: `/api/topic`
 				})
 				this.$data.topicItem = result.data
+
 			},
 			// 提示
 			handleVisible() {
-				this.$refs.powerRef.handlePowerRef()
 				this.$data.isLogin = isLogin()
 				if (this.$data.isLogin) {
+					this.$refs.powerRef.handlePowerRef()
 					this.$data.visible = Math.ceil(Math.random() * 4)
 				}
 			},
@@ -89,23 +95,22 @@
 					innerAudioContext.src = this.getAudioUrl();
 					innerAudioContext.onPlay(() => {
 						this.$data.btnIconfont = 'icon-bofang'
-						const timer = setInterval(() => {
-							const number = innerAudioContext.currentTime / innerAudioContext.duration
-							let perNumber = (number * 120).toFixed(2)
-							if (perNumber >= 100) {
-								clearInterval(timer)
-							}
-							perNumber += '%'
-							this.$data.audioLeft = perNumber
-							this.$data.audioSchedule = perNumber
-						})
 						console.log('开始播放');
 					});
+					innerAudioContext.onTimeUpdate(() => {
+						const number = innerAudioContext.currentTime / innerAudioContext.duration
+						let perNumber = (number * 100).toFixed(2)
+						perNumber += '%'
+						this.$data.audioLeft = perNumber
+						this.$data.audioSchedule = perNumber
+					})
 					innerAudioContext.onEnded(() => {
 						console.log('播放结束')
 						this.$data.isplay = true
 						this.$data.btnIconfont = 'icon-bofang1'
+						console.log(this.$data.audioSchedule, '1111111111111')
 						this.$data.audioSchedule = '0%'
+						console.log(this.$data.audioSchedule, '2222222222222222')
 						this.$data.audioLeft = '0%'
 					})
 					innerAudioContext.onError((res) => {
@@ -167,8 +172,9 @@
 			getAudioUrl() {
 				const BASE_URL = 'https://tdsq.top/static/wav/'
 				const audiourl = this.$data.topicItem.wav
-				const data = BASE_URL + audiourl[Math.floor(Math.random() * audiourl.length)]
-				return data
+				if (audiourl) {
+					return BASE_URL + audiourl
+				}
 			},
 		}
 	}
@@ -191,10 +197,8 @@
 			color: #FFFFFF;
 			display: flex;
 			position: relative;
-			
-			.power{
-				
-			}
+
+			.power {}
 
 			.tips {
 				width: 20%;
@@ -291,7 +295,7 @@
 						height: 100%;
 						background-color: #1890ff;
 						border-radius: 2rpx;
-
+						transition: all .2s;
 					}
 
 					.dots {
@@ -302,6 +306,7 @@
 						position: absolute;
 						left: 50rpx;
 						top: -3rpx;
+						transition: width .2s;
 					}
 				}
 			}
