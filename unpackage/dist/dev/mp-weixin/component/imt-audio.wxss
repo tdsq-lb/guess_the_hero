@@ -21,6 +21,9 @@
 	-webkit-box-align: center;
 	-webkit-align-items: center;
 	        align-items: center;
+	padding: 0 30rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .audio-number {
 	width: 120rpx;

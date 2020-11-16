@@ -17,7 +17,7 @@
 				<view :class="visible === 4 ? 'display' : 'mask_item right_bottom'"></view>
 			</view>
 		</view>
-		<imtAudio :src="topicItem.wav" />
+		<imtAudio ref="mainindex" :src="audio[now]" @prev="now = now === 0?audio.length-1:now-1" @next="now = now === audio.length-1?0:now+1" />
 		<!-- 	<view class="audioBox">
 			<view class="progress_bar_box">
 				<view class="progress_bar">
@@ -49,13 +49,14 @@
 				isLogin: null,
 				topicItem: {},
 				now: 0,
+				audio: [],
 				isCorrect: true,
 				visible: 0,
 				audioSchedule: '0%',
 				audioLeft: '0%',
 				btnIconfont: 'icon-bofang1',
 				value: '',
-				isplay: true
+				isplay: true,
 			}
 		},
 		components: {
@@ -68,11 +69,22 @@
 		methods: {
 			// 获取答题数据
 			async initData() {
-				this.$data.isCorrect = true;
+				this.isCorrect = true;
 				const result = await this.$myRequest({
 					url: `/api/topic`
 				})
-				this.$data.topicItem = result.data
+				this.topicItem = result.data
+				console.log(result.data)
+				const data = result.data
+				this.audio = []
+				if (data.wav) {
+					let than = this
+					data.wav.forEach((item) => {
+						const BASE_URL = 'https://tdsq.top/static/wav/'
+						const srcwav = BASE_URL + item
+						this.audio.push(srcwav)
+					})
+				}
 
 			},
 			// 提示
@@ -146,6 +158,7 @@
 						success: (res) => {
 							if (res.confirm) {
 								console.log('用户点击确定');
+								this.$refs.mainindex.destroy();
 								this.$data.value = ''
 								this.initData()
 							}

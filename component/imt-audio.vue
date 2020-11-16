@@ -2,7 +2,7 @@
 	<view class="imt-audio">
 		<view class="audio-wrapper">
 			<!-- <view class="audio-number">{{format(current)}}</view> -->
-			<slider class="audio-slider" :activeColor="color" block-size="16" :value="current" :max="duration" @changing="seek=true,current=$event.detail.value"
+			<slider class="audio-slider" :activeColor="color" block-size="16" :value="current" :max="100" @changing="seek=true,current=$event.detail.value"
 			 @change="audio.seek($event.detail.value)"></slider>
 			<!-- <view class="audio-number">{{format(duration)}}</view> -->
 		</view>
@@ -20,14 +20,14 @@
 			return {
 				audio: uni.createInnerAudioContext(),
 				current: 0, //当前进度(s)
-				duration: 0, //总时长(s)
 				paused: true, //是否处于暂停状态
 				loading: false, //是否处于读取状态
-				seek: false //是否处于拖动状态
+				seek: false, //是否处于拖动状态
+				now: 0
 			}
 		},
 		props: {
-			src: Array, //音频链接
+			src: String, //音频链接
 			autoplay: Boolean, //是否自动播放
 			continue: Boolean, //播放完成后是否继续播放下一首，需定义@next事件
 			control: {
@@ -40,9 +40,18 @@
 			} //主色调
 		},
 		methods: {
+			// 返回放到给父组件 销毁 this.audio
+			destroy() {
+				console.log('执行了这里')
+				this.audio.seek(0)
+				this.audio.destroy()
+
+			},
 			//返回prev事件
 			prev() {
-				this.$emit('prev')
+				console.log(this.current, '11111111')
+				console.log(this.duration,'22222222222')
+				// this.$emit('prev')
 			},
 			//返回next事件
 			next() {
@@ -67,19 +76,18 @@
 			},
 		},
 		created() {
-			if (this.src) {
-				this.audio.src = this.getAudioUrl(this.src[0])
-				// this.autoplay && this.play()
-			}
 			this.audio.obeyMuteSwitch = false
 			//音频进度更新事件
 			this.audio.onTimeUpdate(() => {
+				
 				if (!this.seek) {
-					this.current = this.audio.currentTime
+					this.current=(this.audio.currentTime/this.audio.duration)*100
 				}
-				if (!this.duration) {
-					this.duration = this.audio.duration
-				}
+				
+				console.log(this.current)
+				// if (!this.duration) {
+				// 	this.duration = this.audio.duration
+				// }
 			})
 			//音频播放事件
 			this.audio.onPlay(() => {
@@ -106,6 +114,11 @@
 		},
 		beforeDestroy() {
 			this.audio.destroy()
+		},
+		watch: {
+			src: function(src, old) {
+				this.audio.src = src
+			}
 		}
 	}
 </script>
@@ -130,6 +143,8 @@
 	.audio-wrapper {
 		display: flex;
 		align-items: center;
+		padding: 0 30rpx;
+		box-sizing: border-box;
 	}
 
 	.audio-number {
