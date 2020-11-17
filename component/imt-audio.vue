@@ -1,10 +1,7 @@
 <template>
 	<view class="imt-audio">
 		<view class="audio-wrapper">
-			<!-- <view class="audio-number">{{format(current)}}</view> -->
-			<slider class="audio-slider" :activeColor="color" block-size="16" :value="current" :max="100" @changing="seek=true,current=$event.detail.value"
-			 @change="audio.seek($event.detail.value)"></slider>
-			<!-- <view class="audio-number">{{format(duration)}}</view> -->
+			<slider class="audio-slider" :activeColor="color" disabled block-size="16" :value="current" :max="100"></slider>
 		</view>
 		<view class="audio-control-wrapper" :style="{color}">
 			<view class="audio-control audio-control-prev" v-if="control" :style="{borderColor:color}" @click="prev">&#xe601;</view>
@@ -22,8 +19,7 @@
 				current: 0, //当前进度(s)
 				paused: true, //是否处于暂停状态
 				loading: false, //是否处于读取状态
-				seek: false, //是否处于拖动状态
-				now: 0
+				timer: ''
 			}
 		},
 		props: {
@@ -49,9 +45,7 @@
 			},
 			//返回prev事件
 			prev() {
-				console.log(this.current, '11111111')
-				console.log(this.duration,'22222222222')
-				// this.$emit('prev')
+				this.$emit('prev')
 			},
 			//返回next事件
 			next() {
@@ -79,15 +73,18 @@
 			this.audio.obeyMuteSwitch = false
 			//音频进度更新事件
 			this.audio.onTimeUpdate(() => {
-				
-				if (!this.seek) {
-					this.current=(this.audio.currentTime/this.audio.duration)*100
-				}
-				
-				console.log(this.current)
-				// if (!this.duration) {
-				// 	this.duration = this.audio.duration
-				// }
+				this.timer = setInterval(() => {
+					this.current = (this.audio.currentTime / this.audio.duration) * 100
+					if (this.current >= 100) {
+						clearInterval(this.timer)
+					}
+				})
+			})
+			//  音频错误事件
+			this.audio.onError((res) => {
+				this.current = 0
+				console.log(res.errMsg, 'res.errMsg ==== >>>.');
+				console.log(res.errCode, 'res.errCode ==== >>>.');
 			})
 			//音频播放事件
 			this.audio.onPlay(() => {
@@ -100,12 +97,10 @@
 			})
 			//音频结束事件
 			this.audio.onEnded(() => {
-				if (this.continue) {
-					this.next()
-				} else {
-					this.paused = true
-					this.current = 0
-				}
+				clearInterval(this.timer)
+				// this.current = 0
+				this.paused = true
+				console.log('播放结束 ========>>>', this.current)
 			})
 			//音频完成更改进度事件
 			this.audio.onSeeked(() => {
@@ -118,8 +113,9 @@
 		watch: {
 			src: function(src, old) {
 				this.audio.src = src
+				this.current = 0
 			}
-		}
+		},
 	}
 </script>
 

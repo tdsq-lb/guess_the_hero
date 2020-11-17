@@ -1,0 +1,1 @@
+<view class="content"><view data-event-opts="{{[['tap',[['handleRemoveUser',['$event']]]]]}}" class="title" bindtap="__e">重新绑定ID</view><view class="head"><image class="head_avatar" src="{{userdata.avatar}}" mode></image></view><view class="info"><text class="name">{{userdata.name}}</text><text>{{userdata.area}}</text></view></view>

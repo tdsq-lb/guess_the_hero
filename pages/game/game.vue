@@ -17,7 +17,7 @@
 				<view :class="visible === 4 ? 'display' : 'mask_item right_bottom'"></view>
 			</view>
 		</view>
-		<imtAudio ref="mainindex" :src="audio[now]" @prev="now = now === 0?audio.length-1:now-1" @next="now = now === audio.length-1?0:now+1" />
+		<ImtAudio ref="mainindex" :src="audio[now]" @prev="now = now === 0?audio.length-1:now-1" @next="now = now === audio.length-1?0:now+1" />
 		<!-- 	<view class="audioBox">
 			<view class="progress_bar_box">
 				<view class="progress_bar">
@@ -29,11 +29,12 @@
 			<view class="onplay_box">
 				<view class="iconfont" :class="btnIconfont" @click="handleAudio"></view>
 			</view> -->
+		<Options :dataitem="selectNameArr" :answe="topicItem.name" @nextQuestion="nextQuestion" />
 
 		<!-- </view> -->
-		<view class="main">
+		<!-- <view class="main">
 			<input type="text" :value="value" placeholder="请输入英雄名称" @focus="handleIsLogin" @input="handleInputValue" @confirm="handleInput" />
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -42,12 +43,14 @@
 		isLogin
 	} from '../../util/isLogin.js'
 	import Power from 'component/power.vue'
-	import imtAudio from '../../component/imt-audio.vue'
+	import ImtAudio from '../../component/imt-audio.vue'
+	import Options from '../../component/options-list.vue'
 	export default {
 		data() {
 			return {
 				isLogin: null,
 				topicItem: {},
+				selectNameArr: [], // 名称选项数组
 				now: 0,
 				audio: [],
 				isCorrect: true,
@@ -61,21 +64,27 @@
 		},
 		components: {
 			Power,
-			imtAudio
+			ImtAudio,
+			Options
 		},
 		created() {
 			this.initData()
 		},
 		methods: {
+			nextQuestion() {
+				this.initData()
+			},
 			// 获取答题数据
 			async initData() {
 				this.isCorrect = true;
 				const result = await this.$myRequest({
 					url: `/api/topic`
 				})
-				this.topicItem = result.data
 				console.log(result.data)
-				const data = result.data
+				this.topicItem = result.data.data
+				this.selectNameArr = result.data.selectNameArr
+				const data = result.data.data
+				// console.log(data,'data ===========>>>')
 				this.audio = []
 				if (data.wav) {
 					let than = this
@@ -89,6 +98,7 @@
 			},
 			// 提示
 			handleVisible() {
+				console.log(this.audio, '111111111111111111111111111111111')
 				this.$data.isLogin = isLogin()
 				if (this.$data.isLogin) {
 					this.$refs.powerRef.handlePowerRef()

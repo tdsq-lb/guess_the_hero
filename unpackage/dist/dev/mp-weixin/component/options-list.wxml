@@ -1,0 +1,1 @@
+<view class="option-list"><block wx:for="{{dataList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view data-event-opts="{{[['tap',[['handleItem',['$0'],[[['dataList','',index]]]]]]]}}" class="item" bindtap="__e">{{''+item+''}}</view></block></view>
