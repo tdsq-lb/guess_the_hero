@@ -1,5 +1,8 @@
 <script>
 	export default {
+		globalData: {
+			select_number: 3
+		},
 		onLaunch: function() {
 			console.log('App Launch')
 		},
@@ -14,5 +17,10 @@
 
 <style>
 	/*每个页面公共css */
-@import url("/static/iconfont/iconfont.css");
+	@import url("/static/iconfont/iconfont.css");
+
+	image {
+		width: 100%;
+		height: 100%;
+	}
 </style>

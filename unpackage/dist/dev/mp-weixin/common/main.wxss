@@ -13,7 +13,10 @@
 
 
 
-	/*每个页面公共css */
+
+
+
+/*每个页面公共css */
 @font-face {
   font-family: 'iconfont';  /* project id 1891359 */
   src: url('https:////at.alicdn.com/t/font_1891359_8fgc6bszv3a.eot');
@@ -53,5 +56,9 @@
 }
 .icon-bofang1:before {
   content: "\e852";
+}
+image {
+	width: 100%;
+	height: 100%;
 }
 

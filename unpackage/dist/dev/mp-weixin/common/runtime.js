@@ -109,7 +109,7 @@
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"component/imt-audio":"component/imt-audio","component/options-list":"component/options-list"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"component/imt-audio":"component/imt-audio","component/options-list":"component/options-list","component/select-number":"component/select-number"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

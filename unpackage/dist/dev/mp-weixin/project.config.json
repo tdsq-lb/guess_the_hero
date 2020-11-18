@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": false,
     "enhance": false,
     "postcss": true,
@@ -38,6 +38,8 @@
   "libVersion": "",
   "appid": "wx376bd938e57eaf9b",
   "projectname": "guess_the_hero",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
       "current": -1,

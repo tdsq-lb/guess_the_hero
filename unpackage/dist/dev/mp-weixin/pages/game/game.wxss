@@ -24,152 +24,139 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content {
+.game {
   position: absolute;
-  background-image: url(https://tdsq.top/static/images/game_bg.jpg);
+  background-image: url(https://tdsq.top/static/images/bg.jpg);
+  background-color: black;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100%;
   width: 100%;
   height: 100%;
-  padding: 20rpx 50rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
 }
-.content .head {
-  width: 100%;
-  height: 40rpx;
-  color: #FFFFFF;
+.game .game-position {
+  width: 20%;
+  height: 120rpx;
+  position: absolute;
+  left: 0;
+  top: 40rpx;
+}
+.game .game-position .game-position-power {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  position: relative;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  width: 100%;
+  height: 50%;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  color: #131516;
+  background-image: url(https://tdsq.top/static/images/enemy_economic_lose.9.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
-.content .head .tips {
+.game .game-position .game-position-times {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  width: 100%;
+  height: 50%;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  color: #131516;
+  background-image: url(https://tdsq.top/static/images/enemy_ecnomic_win.9.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.game .game-content {
+  width: 94%;
+  height: 80%;
+  -webkit-border-radius: 15rpx;
+          border-radius: 15rpx;
+  background-color: #FFFFFF;
+  position: absolute;
+  bottom: 0;
+  left: 3%;
+  padding: 20rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.game .game-content-header {
+  width: 100%;
+  height: 50rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.game .game-content-header .game-content-header-tips {
   width: 20%;
   height: 100%;
-  border-bottom: 1px solid #b18733;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  color: #FFFFFF;
   text-align: center;
-  letter-spacing: 4rpx;
   font-size: 28rpx;
-  position: absolute;
-  right: 0;
+  line-height: 50rpx;
+  color: #ba9a6c;
+  background-image: url(https://tdsq.top/static/images/tips.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
-.content .banner {
+.game .game-content-image {
   width: 100%;
   height: 320rpx;
-  border: 1px solid #b18733;
+  border: 1px solid #ccb089;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  margin: 20rpx 0;
+  margin: 20rpx auto;
+  padding: 5rpx;
   position: relative;
 }
-.content .banner image {
+.game .game-content-image .game-content-image-frame {
   width: 100%;
   height: 100%;
+  border: 1px solid #ccb089;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
 }
-.content .banner .mask {
+.game .game-content-image .game-content-image-frame .game-content-image-frame-Mask {
+  width: 100%;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
 }
-.content .banner .mask .mask_item {
+.game .game-content-image .game-content-image-frame .game-content-image-frame-Mask .item {
   width: 50%;
   height: 50%;
   background-color: #000;
   position: absolute;
 }
-.content .banner .mask .left_top {
+.game .game-content-image .game-content-image-frame .game-content-image-frame-Mask .left_top {
   left: 0;
   top: 0;
 }
-.content .banner .mask .right_top {
+.game .game-content-image .game-content-image-frame .game-content-image-frame-Mask .right_top {
   right: 0;
   top: 0;
 }
-.content .banner .mask .left_bottom {
+.game .game-content-image .game-content-image-frame .game-content-image-frame-Mask .left_bottom {
   left: 0;
   bottom: 0;
 }
-.content .banner .mask .right_bottom {
+.game .game-content-image .game-content-image-frame .game-content-image-frame-Mask .right_bottom {
   right: 0;
   bottom: 0;
 }
-.content .banner .mask .display {
-  display: none;
+.game .game-content-audio {
+  background-color: #555555;
 }
-.content .audioBox {
-  width: 100%;
-  height: 150rpx;
-  background-color: #FFFFFF;
-  -webkit-border-radius: 15rpx;
-          border-radius: 15rpx;
-  margin: 20rpx auto;
-  padding: 20rpx 50rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-.content .audioBox .progress_bar_box {
-  width: 100%;
-  height: 35%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-}
-.content .audioBox .progress_bar_box .progress_bar {
-  width: 100%;
-  height: 5rpx;
-  background-color: #d8d8d8;
-  -webkit-border-radius: 2rpx;
-          border-radius: 2rpx;
-  position: relative;
-}
-.content .audioBox .progress_bar_box .progress_bar .schedule {
-  width: 100%;
-  height: 100%;
-  background-color: #1890ff;
-  -webkit-border-radius: 2rpx;
-          border-radius: 2rpx;
-  -webkit-transition: all .2s;
-  transition: all .2s;
-}
-.content .audioBox .progress_bar_box .progress_bar .dots {
-  width: 10rpx;
-  height: 10rpx;
-  background-color: red;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
-  position: absolute;
-  left: 50rpx;
-  top: -3rpx;
-  -webkit-transition: width .2s;
-  transition: width .2s;
-}
-.content .audioBox .onplay_box {
-  width: 100%;
-  height: 65%;
-  text-align: center;
-}
-.content .audioBox .onplay_box .iconfont {
-  color: #1890ff;
-  font-size: 80rpx;
-}
-.content .main {
-  width: 100%;
-  height: 60rpx;
-}
-.content .main input {
-  width: 100%;
-  height: 100%;
-  border: 1rpx solid #999999;
-  text-align: center;
-  color: #FFFFFF;
+.game .game-content-options {
+  margin: 20rpx 0;
 }
 

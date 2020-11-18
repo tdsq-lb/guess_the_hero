@@ -1,7 +1,7 @@
 <template>
 	<view class="imt-audio">
 		<view class="audio-wrapper">
-			<slider class="audio-slider" :activeColor="color" disabled block-size="16" :value="current" :max="100"></slider>
+			<slider class="audio-slider" :activeColor="color" disabled block-size="10" :value="current" :max="100"></slider>
 		</view>
 		<view class="audio-control-wrapper" :style="{color}">
 			<view class="audio-control audio-control-prev" v-if="control" :style="{borderColor:color}" @click="prev">&#xe601;</view>
@@ -119,7 +119,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	@font-face {
 		font-family: 'icon';
 		src: url('//at.alicdn.com/t/font_1104838_fxzimc34xw.eot');
@@ -131,8 +131,8 @@
 	}
 
 	.imt-audio {
-		padding: 30upx 0;
-		background: #fff;
+		// background-color: #555555;
+		padding: 15rpx 0;
 		border-radius: 20upx;
 	}
 
@@ -143,21 +143,13 @@
 		box-sizing: border-box;
 	}
 
-	.audio-number {
-		width: 120upx;
-		font-size: 24upx;
-		line-height: 1;
-		color: #333;
-		text-align: center;
-	}
-
 	.audio-slider {
 		flex: 1;
 		margin: 0;
 	}
 
 	.audio-control-wrapper {
-		margin-top: 20upx;
+		margin-top: 10rpx;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -165,11 +157,12 @@
 	}
 
 	.audio-control {
-		font-size: 32upx;
+		font-size: 20rpx;
 		line-height: 1;
-		border: 4upx solid;
+		border: 2upx solid;
 		border-radius: 50%;
-		padding: 16upx;
+		padding: 16rpx;
+		box-sizing: border-box;
 	}
 
 	.audio-control-next {
@@ -177,8 +170,7 @@
 	}
 
 	.audio-control-switch {
-		font-size: 40upx;
-		margin: 0 100upx;
+		margin: 0 100rpx;
 	}
 
 	.audioLoading {

@@ -156,7 +156,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 18));
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 18));
 
 
 
@@ -200,7 +200,8 @@ __webpack_require__.r(__webpack_exports__);
 var _isLogin = __webpack_require__(/*! ../../util/isLogin.js */ 21);
 
 
-var _power = _interopRequireDefault(__webpack_require__(/*! component/power.vue */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var ImtAudio = function ImtAudio() {__webpack_require__.e(/*! require.ensure | component/imt-audio */ "component/imt-audio").then((function () {return resolve(__webpack_require__(/*! ../../component/imt-audio.vue */ 55));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Options = function Options() {__webpack_require__.e(/*! require.ensure | component/options-list */ "component/options-list").then((function () {return resolve(__webpack_require__(/*! ../../component/options-list.vue */ 62));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _power = _interopRequireDefault(__webpack_require__(/*! component/power.vue */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var Select = function Select() {__webpack_require__.e(/*! require.ensure | component/select-number */ "component/select-number").then((function () {return resolve(__webpack_require__(/*! component/select-number.vue */ 74));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ImtAudio = function ImtAudio() {__webpack_require__.e(/*! require.ensure | component/imt-audio */ "component/imt-audio").then((function () {return resolve(__webpack_require__(/*! component/imt-audio.vue */ 60));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Options = function Options() {__webpack_require__.e(/*! require.ensure | component/options-list */ "component/options-list").then((function () {return resolve(__webpack_require__(/*! component/options-list.vue */ 67));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 
 {
@@ -211,17 +212,18 @@ var _power = _interopRequireDefault(__webpack_require__(/*! component/power.vue 
       selectNameArr: [], // 名称选项数组
       now: 0,
       audio: [],
-      isCorrect: true,
-      visible: 0,
-      audioSchedule: '0%',
-      audioLeft: '0%',
-      btnIconfont: 'icon-bofang1',
-      value: '',
-      isplay: true };
+      isCorrect: true, // 是否显示图片
+      selectNumber: 3,
+      refItem: 1,
+      item1: true,
+      item2: true,
+      item3: true,
+      item4: true };
 
   },
   components: {
     Power: _power.default,
+    Select: Select,
     ImtAudio: ImtAudio,
     Options: Options },
 
@@ -229,7 +231,10 @@ var _power = _interopRequireDefault(__webpack_require__(/*! component/power.vue 
     this.initData();
   },
   methods: {
-    nextQuestion: function nextQuestion() {
+    handleSelectNumber: function handleSelectNumber(val) {
+      this.selectNumber = val;
+    },
+    handleNextQuestion: function handleNextQuestion() {
       this.initData();
     },
     // 获取答题数据
@@ -242,7 +247,6 @@ var _power = _interopRequireDefault(__webpack_require__(/*! component/power.vue 
                 _this.topicItem = result.data.data;
                 _this.selectNameArr = result.data.selectNameArr;
                 data = result.data.data;
-                // console.log(data,'data ===========>>>')
                 _this.audio = [];
                 if (data.wav) {
                   than = _this;
@@ -251,113 +255,39 @@ var _power = _interopRequireDefault(__webpack_require__(/*! component/power.vue 
                     var srcwav = BASE_URL + item;
                     _this.audio.push(srcwav);
                   });
-                }case 10:case "end":return _context.stop();}}}, _callee);}))();
-
-    },
+                }
+                // event.data = eval('(' + event.data + ')') // eval  把字符串转成js语句
+              case 10:case "end":return _context.stop();}}}, _callee);}))();},
     // 提示
     handleVisible: function handleVisible() {
-      console.log(this.audio, '111111111111111111111111111111111');
-      this.$data.isLogin = (0, _isLogin.isLogin)();
-      if (this.$data.isLogin) {
-        this.$refs.powerRef.handlePowerRef();
-        this.$data.visible = Math.ceil(Math.random() * 4);
+      this.isLogin = (0, _isLogin.isLogin)();
+      if (this.isLogin) {
+        if (this.refItem <= 4) {
+          this['item' + this.refItem] = false;
+          this.refItem = this.refItem + 1;
+          this.$refs.childPowerRef.handlePowerRef();
+        }
       }
     },
-    // 语言播放
-    handleAudio: function handleAudio() {var _this2 = this;
-      this.$data.isLogin = (0, _isLogin.isLogin)();
-      var islogin = this.$data.isLogin;
-      var ispaly = this.$data.isplay;
-      if (islogin && ispaly) {
-        this.$data.isplay = false;
-        var innerAudioContext = uni.createInnerAudioContext();
-        innerAudioContext.autoplay = true;
-        innerAudioContext.src = this.getAudioUrl();
-        innerAudioContext.onPlay(function () {
-          _this2.$data.btnIconfont = 'icon-bofang';
-          console.log('开始播放');
-        });
-        innerAudioContext.onTimeUpdate(function () {
-          var number = innerAudioContext.currentTime / innerAudioContext.duration;
-          var perNumber = (number * 100).toFixed(2);
-          perNumber += '%';
-          _this2.$data.audioLeft = perNumber;
-          _this2.$data.audioSchedule = perNumber;
-        });
-        innerAudioContext.onEnded(function () {
-          console.log('播放结束');
-          _this2.$data.isplay = true;
-          _this2.$data.btnIconfont = 'icon-bofang1';
-          console.log(_this2.$data.audioSchedule, '1111111111111');
-          _this2.$data.audioSchedule = '0%';
-          console.log(_this2.$data.audioSchedule, '2222222222222222');
-          _this2.$data.audioLeft = '0%';
-        });
-        innerAudioContext.onError(function (res) {
-          console.log(res.errMsg);
-          console.log(res.errCode);
-        });
+    // 回答正确 显示图片
+    handleShowMask: function handleShowMask() {
+      this.isCorrect = false;
+    },
+    // 下一题 隐藏图片 关闭提示的图片
+    handleHideMask: function handleHideMask() {
+      this.isCorrect = true;
+      this.refItem = 1;
+      for (var i = 4; i >= 1; i--) {
+        console.log(i, '=================>>>');
+        this['item' + i] = true;
       }
-    },
-    // 输入框聚焦时触发，判断是登陆
-    handleIsLogin: function handleIsLogin(e) {
-      this.$data.isLogin = (0, _isLogin.isLogin)();
-    },
-    // 输入时触发，动态绑定输入框的value值
-    handleInputValue: function handleInputValue(e) {
-      this.$data.value = e.detail.value;
-    },
-    // 点击完成按钮时触发 判断输入值是否正确
-    handleInput: function handleInput(e) {var _this3 = this;
-      var userid = this.$data.isLogin.id;
-      console.log(userid);
-      var name = this.$data.topicItem.name;
-      var value = e.detail.value;
-      var istrue = name.includes(value);
-      if (istrue) {
-        this.$data.isCorrect = false;
-        var result = this.$myRequest({
-          url: "/api/answer?userid=".concat(userid) });
 
-        uni.showModal({
-          showCancel: false,
-          content: '答案正确',
-          confirmText: '下一题',
-          success: function success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定');
-              _this3.$refs.mainindex.destroy();
-              _this3.$data.value = '';
-              _this3.initData();
-            }
-          } });
-
-      } else {
-        uni.showModal({
-          showCancel: false,
-          content: '请输入正确答案',
-          confirmText: '确定',
-          success: function success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定');
-            }
-          } });
-
-      }
     },
     getImgUrl: function getImgUrl(img) {
       if (img) {
-        return "https://tdsq.top/static/images/".concat(img);
-      }
-    },
-    getAudioUrl: function getAudioUrl() {
-      var BASE_URL = 'https://tdsq.top/static/wav/';
-      var audiourl = this.$data.topicItem.wav;
-      if (audiourl) {
-        return BASE_URL + audiourl;
+        return "https://tdsq.top/static/lol_img/".concat(img);
       }
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 18 */,

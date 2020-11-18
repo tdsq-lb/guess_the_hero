@@ -36,12 +36,13 @@
   text-align: center;
 }
 .option-list .item {
-  width: 33%;
-  background-color: red;
-  padding: 15rpx 15rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  color: #FFFFFF;
-  margin: 5rpx 0;
+  width: 30%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 25rpx;
+  margin: 15rpx 0;
+  background-image: url(https://tdsq.top/static/images/tft_battle_rank_tier_0.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 

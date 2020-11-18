@@ -15,55 +15,75 @@
 			return {
 				userInfo: null, //	用户信息
 				dataList: [],
-				isanswe: ''
+				isanswe: '',
+				selectNumber: 3
 			}
 		},
 		props: {
 			dataitem: Array, // 名称数组
 			answe: String //正确答案
 		},
-		created() {
-			// console.log(this.dataitem,'============>>>>')
-		},
+		created() {},
 		methods: {
 			handleItem(e) {
-				this.userInfo = isLogin()
-				const userid = this.userInfo.id
-				console.log(this.isanswe, '正确答案')
-				if (this.isanswe == e) {
-					const result = this.$myRequest({
-						url: `/api/answer?userid=${userid}`
-					})
+				if (this.selectNumber >= 1) {
+					this.selectNumber = this.selectNumber - 1
+					this.$emit('handleSelectNumber', this.selectNumber);
+					// --------------------------------------
+					this.userInfo = isLogin()
+					const userid = this.userInfo.id
+					if (this.isanswe == e) {
+						const result = this.$myRequest({
+							url: `/api/answer?userid=${userid}`
+						})
+						this.$emit('handleShowMask')
+						uni.showModal({
+							showCancel: false,
+							content: '答案正确',
+							confirmText: '下一题',
+							success: (res) => {
+								if (res.confirm) {
+									console.log('用户点击确定');
+									this.$emit('handleNextQuestion')
+									this.selectNumber = 3
+									this.$emit('handleSelectNumber', this.selectNumber);
+									this.$emit('handleHideMask')
+								}
+							}
+						});
+					} else {
+						uni.showModal({
+							showCancel: false,
+							content: '请输入正确答案',
+							confirmText: '确定',
+							success: function(res) {
+								if (res.confirm) {
+									console.log('用户点击确定');
+								}
+							}
+						});
+					}
+				} else {
 					uni.showModal({
-						showCancel: false,
-						content: '答案正确',
-						confirmText: '下一题',
+						title: '提示',
+						content: '你没有了选择次数,是否选择看广告增加次数',
 						success: (res) => {
 							if (res.confirm) {
 								console.log('用户点击确定');
-								this.$emit('nextQuestion')
-								// this.$parent.initData()
-							}
-						}
-					});
-				} else {
-					uni.showModal({
-						showCancel: false,
-						content: '请输入正确答案',
-						confirmText: '确定',
-						success: function(res) {
-							if (res.confirm) {
-								console.log('用户点击确定');
+								this.selectNumber = 3
+								this.$emit('handleSelectNumber', this.selectNumber);
+							} else if (res.cancel) {
+								console.log('用户点击取消');
 							}
 						}
 					});
 				}
+
 			}
 		},
 		watch: {
 			dataitem: function(src, old) {
 				this.dataList = src
-				console.log(this.dataitem, '============>>>>')
 			},
 			answe: function(src, old) {
 				this.isanswe = src
@@ -80,12 +100,14 @@
 		text-align: center;
 
 		.item {
-			width: 33%;
-			background-color: red;
-			padding: 15rpx 15rpx;
-			box-sizing: border-box;
-			color: #FFFFFF;
-			margin: 5rpx 0;
+			width: 30%;
+			height: 50rpx;
+			line-height: 50rpx;
+			font-size: 25rpx;
+			margin: 15rpx 0;
+			background-image: url(https://tdsq.top/static/images/tft_battle_rank_tier_0.png);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
 
 		}
 	}

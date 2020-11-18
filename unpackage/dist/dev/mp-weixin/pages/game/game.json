@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "power": "/component/power",
+    "select": "/component/select-number",
     "imt-audio": "/component/imt-audio",
     "options": "/component/options-list"
   }
