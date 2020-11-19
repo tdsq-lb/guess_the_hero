@@ -200,7 +200,7 @@ var _default = {
 
 /***/ }),
 
-/***/ 54:
+/***/ 55:
 /*!********************************************************************!*\
   !*** F:/台词猜英雄/guess_the_hero/main.js?{"page":"component%2Fpower"} ***!
   \********************************************************************/
@@ -216,5 +216,5 @@ createPage(_power.default);
 
 /***/ })
 
-},[[54,"common/runtime","common/vendor"]]]);
+},[[55,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/component/power.js.map

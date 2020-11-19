@@ -8948,6 +8948,59 @@ var getPower = function getPower() {
 };exports.getPower = getPower;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
+/***/ }),
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */
+/*!********************************************!*\
+  !*** F:/台词猜英雄/guess_the_hero/util/util.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.checkIsLogin = exports.isLogin = void 0;var isLogin = function isLogin() {
+  try {
+    var value = uni.getStorageSync('USER-INFO');
+    if (value) {
+      return value;
+    }
+  } catch (e) {
+    // error
+  }
+};exports.isLogin = isLogin;
+var checkIsLogin = function checkIsLogin() {
+  try {
+    var value = uni.getStorageSync('USER-INFO');
+    if (value) {
+      return value;
+    } else {
+      uni.showModal({
+        title: '提示',
+        content: '您还未登录，请先登录',
+        success: function success(res) {
+          if (res.confirm) {
+            uni.redirectTo({
+              url: '../index/index' });
+
+          } else if (res.cancel) {
+            console.log('用户取消了登录');
+          }
+        } });
+
+    }
+  } catch (e) {
+    // error
+  }
+};exports.checkIsLogin = checkIsLogin;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
 /***/ })
 ]]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

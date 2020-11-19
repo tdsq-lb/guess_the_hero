@@ -16,25 +16,24 @@
   "tabBar": {
     "color": "#FFFFFF",
     "selectedColor": "#fbe589",
-    "backgroundColor": "#000000",
+    "backgroundColor": "white",
     "list": [
       {
         "pagePath": "pages/game/game",
-        "iconPath": "static/images/挑战.png",
-        "selectedIconPath": "static/images/挑战_active.png"
+        "iconPath": "static/images/challenge.png",
+        "selectedIconPath": "static/images/challenge_active.png"
       },
       {
         "pagePath": "pages/list/list",
-        "iconPath": "static/images/排行_active.png",
-        "selectedIconPath": "static/images/排行.png"
+        "iconPath": "static/images/ranking.png",
+        "selectedIconPath": "static/images/ranking_active.png"
       },
       {
         "pagePath": "pages/user/user",
-        "iconPath": "static/images/英雄.png",
-        "selectedIconPath": "static/images/英雄_active.png"
+        "iconPath": "static/images/user.png",
+        "selectedIconPath": "static/images/user_active.png"
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap43.json"
+  "usingComponents": {}
 }

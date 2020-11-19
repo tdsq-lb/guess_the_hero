@@ -27,12 +27,12 @@
 	export default {
 		data() {
 			return {
-				gameId: '男神灬彪',
+				gameId: '',
 				array: ['请选择大区', '艾欧尼亚', '比尔吉沃特', '祖安', '诺克萨斯', '班德尔城', '德玛西亚', '皮尔特沃夫', '战争学院', '弗雷尔卓德', '巨神峰', '雷瑟守备', '无畏先锋',
 					'裁决之地', '黑色玫瑰', '暗影岛', '恕瑞玛', '钢铁烈阳', '水晶之痕', '均衡教派', '扭曲丛林', '教育专区', '影流', '守望之海', '征服之海', '卡拉曼达', '巨龙之巢',
 					'皮城警备', '男爵领域'
 				],
-				server: 22,
+				server: 0,
 			}
 		},
 		methods: {
@@ -60,8 +60,9 @@
 									title: '登陆成功',
 									duration: 2000
 								});
+								console.log(result.data, '<<<<<<<<<<<==============(result)')
 								uni.switchTab({
-									url: '../game/game',
+									url: '/pages/user/user'
 								})
 							}
 						});
@@ -76,7 +77,7 @@
 							}
 						});
 					}
-					console.log(result, '<<<<<<<<<<<==============(result)')
+
 				} else {
 					uni.showModal({
 						showCancel: false,

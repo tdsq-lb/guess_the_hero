@@ -39,9 +39,10 @@
 </template>
 
 <script>
-	import {
-		isLogin
-	} from '../../util/isLogin.js'
+	// import {
+	// 	isLogin
+	// } from '../../util/isLogin.js'
+	import {checkIsLogin} from '../../util/util.js'
 	import Power from 'component/power.vue'
 	import Select from 'component/select-number.vue'
 	import ImtAudio from 'component/imt-audio.vue'
@@ -102,7 +103,7 @@
 			},
 			// 提示
 			handleVisible() {
-				this.isLogin = isLogin()
+				this.isLogin = checkIsLogin()
 				if (this.isLogin) {
 					if (this.refItem <= 4) {
 						this['item' + this.refItem] = false
@@ -135,10 +136,12 @@
 </script>
 
 <style lang="scss">
-	.game {
-		position: absolute;
-		background-image: url(https://tdsq.top/static/images/bg.jpg);
+	page{
 		background-color: black;
+	}
+	.game {
+		// position: absolute;
+		background-image: url(https://tdsq.top/static/images/bg.jpg);
 		background-repeat: no-repeat;
 		background-size: 100%;
 		width: 100%;

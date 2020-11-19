@@ -1,24 +1,27 @@
 <template>
-	<view class="content">
-		<view class="banner">
-			<image src="https://tdsq.top/static/images/list_bg.jpg" mode=""></image>
+	<view class="list">
+		<view class="list-banner">
+			<image src="https://tdsq.top/static/images/banner.png" lazy-load mode="scaleToFill"></image>
 		</view>
-		<view class="box">
-			<view class="item" v-for="(item,index) in data" :key="item.id">
-				<view class="item-user">
-					<image class="rank" :src="(getImgUrl(index,0))" mode=""></image>
-					<image class="avatar" :src="(getImgUrl(item.photo,1))" mode=""></image>
+		<view class="list-content">
+			<view class="list-content-item" v-for="(item,index) in data" :key="item.id">
+				<view class="list-content-item-user">
+					<image class="avatar" :src="(getImgUrl(item.photo))" lazy-load mode="scaleToFill" :data-index="index" @error="imageError"></image>
 					<text class="name">{{item.name}}</text>
 				</view>
-				<text class="answer">
+				<view class="list-content-item-answer">
 					{{item.week_topic}}
-				</text>
+				</view>
 			</view>
 		</view>
+		<!-- <view class="list-rule">
+
+		</view> -->
 	</view>
 </template>
 
 <script>
+	import {getImgUrl} from '../../util/util.js'
 	export default {
 		data() {
 			return {
@@ -33,86 +36,75 @@
 				const result = await this.$myRequest({
 					url: '/api/ranking'
 				})
-				this.$data.data = result.data
+				this.data = result.data
 			},
-			getImgUrl(img, e) {
-				let imgurl = null;
-				if (e) {
-					imgurl = `https://cdn.tgp.qq.com/lol/images/resources/usericon/${img}`
+			// 图片加载发生错误
+			imageError(e) {
+				const index = e.target.dataset.index;
+				this.data[index].photo = 'no_anchor_living.png'
+			},
+			getImgUrl(img) {
+				let errimg = 'no_anchor_living.png'
+				if (img === errimg) {
+					return `/static/images/${img}`
 				} else {
-					imgurl = `/static/images/tft_rank_${img + 1}.png`
+					return `https://cdn.tgp.qq.com/lol/images/resources/usericon/${img}`
 				}
-				return imgurl
 			},
 		}
 	}
 </script>
 
 <style lang="scss">
-	// page {
-	// 	height: 100%;
-	// }
-
-	.content {
-		position: absolute;
+	.list {
 		width: 100%;
-		min-height: 100%;
-		background-color: #fde9b4;
+		height: auto;
+	}
 
-		image {
-			width: 100%;
-			height: 100%;
-		}
+	.list-banner {
+		width: 100%;
+		height: 330rpx;
+	}
 
-		.banner {
-			width: 100%;
-			height: 350rpx;
-			margin-bottom: 20rpx;
-		}
+	.list-content {
+		height: auto;
+		margin-bottom: 200rpx;
 
-		.box {
-			width: 90%;
-			height: auto;
-			margin: 20rpx auto;
-			background-color: #FFFFFF;
-			padding: 10rpx;
+		.list-content-item {
+			margin: 15rpx 20rpx;
+			display: flex;
+			justify-content: space-between;
+			padding: 10rpx 0;
+			border-bottom: 2rpx solid #e6e6e6;
+			box-sizing: border-box;
 
-			.item {
-				width: 100%;
-				height: 100rpx;
-				// background-color: red;
+			.list-content-item-user {
+				flex: 2;
 				display: flex;
 				align-items: center;
-				justify-content: space-between;
 
-				.item-user {
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-
-					.rank {
-						width: 45rpx;
-						height: 60rpx;
-					}
-
-					.avatar {
-						width: 80rpx;
-						height: 80rpx;
-						border-radius: 50%;
-						margin: 0 20rpx;
-					}
-
-					.name {
-						font-size: 30rpx;
-					}
+				.avatar {
+					width: 80rpx;
+					height: 80rpx;
+					border-radius: 50%;
+					border: 4rpx solid #ba9a6c;
+					box-sizing: border-box;
 				}
 
-				.answer {
-					// flex: 1;
+				.name {
+					font-size: 28rpx;
+					margin-left: 20rpx;
 				}
+			}
 
-
+			.list-content-item-answer {
+				flex: 1;
+				line-height: 80rpx;
+				text-align: center;
 			}
 		}
+		// .list-rule{
+			
+		// }
 	}
 </style>

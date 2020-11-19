@@ -197,10 +197,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _isLogin = __webpack_require__(/*! ../../util/isLogin.js */ 21);
 
 
-var _power = _interopRequireDefault(__webpack_require__(/*! component/power.vue */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var Select = function Select() {__webpack_require__.e(/*! require.ensure | component/select-number */ "component/select-number").then((function () {return resolve(__webpack_require__(/*! component/select-number.vue */ 74));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ImtAudio = function ImtAudio() {__webpack_require__.e(/*! require.ensure | component/imt-audio */ "component/imt-audio").then((function () {return resolve(__webpack_require__(/*! component/imt-audio.vue */ 60));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Options = function Options() {__webpack_require__.e(/*! require.ensure | component/options-list */ "component/options-list").then((function () {return resolve(__webpack_require__(/*! component/options-list.vue */ 67));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+var _util = __webpack_require__(/*! ../../util/util.js */ 36);
+var _power = _interopRequireDefault(__webpack_require__(/*! component/power.vue */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var Select = function Select() {__webpack_require__.e(/*! require.ensure | component/select-number */ "component/select-number").then((function () {return resolve(__webpack_require__(/*! component/select-number.vue */ 56));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ImtAudio = function ImtAudio() {__webpack_require__.e(/*! require.ensure | component/imt-audio */ "component/imt-audio").then((function () {return resolve(__webpack_require__(/*! component/imt-audio.vue */ 61));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Options = function Options() {Promise.all(/*! require.ensure | component/options-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("component/options-list")]).then((function () {return resolve(__webpack_require__(/*! component/options-list.vue */ 68));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -260,7 +261,7 @@ var _power = _interopRequireDefault(__webpack_require__(/*! component/power.vue 
               case 10:case "end":return _context.stop();}}}, _callee);}))();},
     // 提示
     handleVisible: function handleVisible() {
-      this.isLogin = (0, _isLogin.isLogin)();
+      this.isLogin = (0, _util.checkIsLogin)();
       if (this.isLogin) {
         if (this.refItem <= 4) {
           this['item' + this.refItem] = false;

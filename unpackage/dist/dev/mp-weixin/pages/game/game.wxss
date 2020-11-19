@@ -24,10 +24,11 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.game {
-  position: absolute;
-  background-image: url(https://tdsq.top/static/images/bg.jpg);
+page {
   background-color: black;
+}
+.game {
+  background-image: url(https://tdsq.top/static/images/bg.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
   width: 100%;
