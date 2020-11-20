@@ -7,5 +7,23 @@
 		"newFeature": true
 	},
 	"appid": "tt576321dec8589e51",
-	"projectname": "guess_the_hero"
+	"projectname": "guess_the_hero",
+	"condition": {
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "a",
+					"pathName": "pages/user/user",
+					"query": "",
+					"scene": "011001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				}
+			]
+		}
+	}
 }

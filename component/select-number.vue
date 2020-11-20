@@ -1,6 +1,6 @@
 <template>
 	<view>
-		{{selectNumber}}
+		选择数:{{selectNumber}}
 	</view>
 </template>
 

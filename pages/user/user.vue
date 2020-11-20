@@ -26,12 +26,23 @@
 							<text>{{userdata.area}}</text>
 							<text>{{userdata.name}}</text>
 						</view>
+						<view class="box2-img">
+							<image :src="getImgUrl(userdata.flexible_SET_of_row)" lazy-load mode="scaleToFill" @error="imageError"></image>
+						</view>
 						<view class="box2-rank">
 							{{userdata.flexible_SET_of_row}}
 						</view>
 					</view>
 				</view>
 			</view>
+			<button open-type="share" class="forward">
+				<!-- #ifdef MP-WEIXIN -->
+				转发给微信好友
+				<!-- #endif -->
+				<!-- #ifdef MP-TOUTIAO -->
+				转发给好友
+				<!-- #endif -->
+			</button>
 		</view>
 	</view>
 </template>
@@ -47,6 +58,33 @@
 				islogin: true
 			}
 		},
+		// #ifdef MP-TOUTIAO 
+		onShareAppMessage(option) {
+			// option.from === 'button'
+			return {
+				title: '台词猜英雄',
+				desc: '英雄联盟听台词猜英雄，赢免费皮肤',
+				path: '/pages/user/user', // ?后面的参数会在转发页面打开时传入onLoad方法
+				// imageUrl: 'https://e.com/e.png', // 支持本地或远程图片，默认是小程序 icon
+				// templateId: '这是开发者后台设置的分享素材模板id',
+				success() {
+					console.log('转发发布器已调起，并不意味着用户转发成功，微头条不提供这个时机的回调');
+				},
+				fail() {
+					console.log('转发发布器调起失败');
+				}
+			}
+		},
+		// #endif
+		// #ifdef MP-WEIXIN
+		onShareAppMessage: function() {
+			return {
+				title: '英雄联盟听台词猜英雄',
+				path: '/pages/user/user',
+				success: function(res) {}
+			}
+		},
+		// #endif 
 		created() {
 			const istrue = isLogin()
 			if (istrue) {
@@ -89,6 +127,46 @@
 			// 图片加载发生错误
 			imageError(e) {
 				this.userdata.avatar = '/static/images/no_anchor_living.png'
+			},
+			getImgUrl(e) {
+				console.log(e,'111111111111111')
+				if (e) {
+					const rank = e.substring(0, 2)
+					let flexible = '/static/images/'
+					console.log(rank)
+					switch (rank) {
+						case '黑铁':
+							flexible = flexible + 'icon_ht.png'
+							break;
+						case '青铜':
+							flexible = flexible + 'icon-qt.png'
+							break;
+						case '白银':
+							flexible = flexible + 'icon-by.png'
+							break;
+						case '黄金':
+							flexible = flexible + 'icon-hj.png'
+							break;
+						case '铂金':
+							flexible = flexible + 'icon-bj.png'
+							break;
+						case '钻石':
+							flexible = flexible + 'icon-zs.png'
+							break;
+						case '大师':
+							flexible = flexible + 'icon-ds.png'
+							break;
+						case '宗师':
+							flexible = flexible + 'icon-zongs.png'
+							break;
+						case '王者':
+							flexible = flexible + 'icon-wz.png'
+							break;
+						default:
+							return '/static/images/no_anchor_living.png'
+					}
+					return flexible
+				}
 			}
 		}
 	}
@@ -132,8 +210,6 @@
 				width: 440rpx;
 				height: 550rpx;
 			}
-
-
 
 			.avatar {
 				position: absolute;
@@ -221,12 +297,37 @@
 						}
 					}
 
+					.box2-img {
+						width: 100rpx;
+						height: 100rpx;
+						margin: 0 auto;
+
+						image {
+							border-radius: 50%;
+						}
+					}
+
 					.box2-rank {
 						color: #FFFFFF;
 						font-size: 35rpx;
 						font-weight: bold;
 					}
 				}
+			}
+
+			.forward {
+				width: 70%;
+				height: 100rpx;
+				background-image: url(../../static/images/ycfcx.png);
+				background-size: 100% 100%;
+				color: #FFFFFF;
+				text-align: center;
+				line-height: 100rpx;
+				font-size: 32rpx;
+				position: absolute;
+				left: 50%;
+				bottom: 10%;
+				transform: translate(-50%, -20%);
 			}
 		}
 	}

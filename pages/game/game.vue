@@ -1,30 +1,30 @@
 <template>
 	<view class="game">
-		<view class="game-position">
+		<!-- <view class="game-position">
 			<view class="game-position-power">
-				<text>体力值:</text>
 				<Power ref="childPowerRef" />
 			</view>
 			<view class="game-position-times">
-				<text>选择数:</text>
 				<Select :selectNumber="selectNumber" />
 			</view>
-		</view>
+		</view> -->
 		<view class="game-content">
 			<view class="game-content-header">
-				<view class="game-content-header-tips" @click="handleVisible">
+				<image src="../../static/images/tetx.png" mode="scaleToFill"></image>
+				<!-- <view class="game-content-header-tips" @click="handleVisible">
 					<text class="iconfont icon-tishi"></text>提示
-				</view>
+				</view> -->
 			</view>
 			<view class="game-content-image">
-				<view class="game-content-image-frame">
+				<image src="https://tdsq.top/static/images/heroshow.png" mode="scaleToFill" lazy-load v-show="isCorrect"></image>
+				<view class="game-content-image-frame" v-show="!isCorrect">
 					<image :src="getImgUrl(topicItem.images)" mode="scaleToFill" lazy-load></image>
-					<view class="game-content-image-frame-Mask" v-show="isCorrect">
+					<!-- <view class="game-content-image-frame-Mask" v-show="isCorrect">
 						<view v-show="item1" class="item left_top"></view>
 						<view v-show="item2" class="item right_top"></view>
 						<view v-show="item3" class="item left_bottom"></view>
 						<view v-show="item4" class="item right_bottom"></view>
-					</view>
+					</view> -->
 				</view>
 			</view>
 			<view class="game-content-audio">
@@ -39,9 +39,6 @@
 </template>
 
 <script>
-	// import {
-	// 	isLogin
-	// } from '../../util/isLogin.js'
 	import {checkIsLogin} from '../../util/util.js'
 	import Power from 'component/power.vue'
 	import Select from 'component/select-number.vue'
@@ -74,6 +71,7 @@
 			this.initData()
 		},
 		methods: {
+			// 选择次数 传递给Select子组件
 			handleSelectNumber(val) {
 				this.selectNumber = val
 			},
@@ -99,7 +97,6 @@
 						this.audio.push(srcwav)
 					})
 				}
-				// event.data = eval('(' + event.data + ')') // eval  把字符串转成js语句
 			},
 			// 提示
 			handleVisible() {
@@ -108,7 +105,8 @@
 					if (this.refItem <= 4) {
 						this['item' + this.refItem] = false
 						this.refItem = this.refItem + 1
-						this.$refs.childPowerRef.handlePowerRef()
+						// 提示减体力值
+						// this.$refs.childPowerRef.handlePowerRef()
 					}
 				}
 			},
@@ -195,7 +193,7 @@
 
 		.game-content-header {
 			width: 100%;
-			height: 50rpx;
+			height: 40rpx;
 			display: flex;
 			justify-content: space-between;
 
@@ -219,7 +217,7 @@
 			box-sizing: border-box;
 			margin: 20rpx auto;
 			padding: 5rpx;
-			position: relative;
+			position: relative;	
 
 			.game-content-image-frame {
 				width: 100%;
@@ -227,7 +225,7 @@
 				border: 1px solid #ccb089;
 				box-sizing: border-box;
 				position: relative;
-
+			
 				.game-content-image-frame-Mask {
 					width: 100%;
 					height: 100%;
@@ -238,7 +236,7 @@
 					.item {
 						width: 50%;
 						height: 50%;
-						background-color: #000;
+						// background-color: #000;
 						position: absolute;
 					}
 
@@ -266,10 +264,11 @@
 		}
 
 		.game-content-audio {
-			background-color: #555555;
+			// background-color: #555555;
 		}
 
 		.game-content-options {
+			// background-color: #555555;
 			margin: 20rpx 0;
 		}
 

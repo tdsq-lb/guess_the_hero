@@ -1,6 +1,6 @@
 <template>
 	<view>
-		{{count}}
+		体力值:{{count}}
 	</view>
 </template>
 

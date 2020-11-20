@@ -1,1 +1,1 @@
-<view>{{''+count+''}}</view>
+<view>{{'体力值:'+count+''}}</view>

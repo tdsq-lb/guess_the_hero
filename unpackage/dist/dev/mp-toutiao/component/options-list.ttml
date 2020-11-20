@@ -1,0 +1,1 @@
+<view class="option-list"><block tt:for="{{dataList}}" tt:for-item="item" tt:for-index="index" tt:key="index"><view data-event-opts="{{[['tap',[['handleItem',['$0'],[[['dataList','',index]]]]]]]}}" class="item" bindtap="__e">{{''+item+''}}</view></block></view>

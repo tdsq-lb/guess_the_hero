@@ -88,7 +88,7 @@ page {
 }
 .game .game-content-header {
   width: 100%;
-  height: 50rpx;
+  height: 40rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -135,7 +135,6 @@ page {
 .game .game-content-image .game-content-image-frame .game-content-image-frame-Mask .item {
   width: 50%;
   height: 50%;
-  background-color: #000;
   position: absolute;
 }
 .game .game-content-image .game-content-image-frame .game-content-image-frame-Mask .left_top {
@@ -153,9 +152,6 @@ page {
 .game .game-content-image .game-content-image-frame .game-content-image-frame-Mask .right_bottom {
   right: 0;
   bottom: 0;
-}
-.game .game-content-audio {
-  background-color: #555555;
 }
 .game .game-content-options {
   margin: 20rpx 0;

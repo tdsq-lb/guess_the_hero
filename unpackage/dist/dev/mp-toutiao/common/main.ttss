@@ -13,45 +13,50 @@
 
 
 
-	/*每个页面公共css */
+
+
+
+/*每个页面公共css */
+page {
+	height: 100%;
+}
+image {
+	width: 100%;
+	height: 100%;
+}
 @font-face {
-  font-family: 'iconfont';  /* project id 1891359 */
-  src: url('https:////at.alicdn.com/t/font_1891359_8fgc6bszv3a.eot');
-  src: url('https:////at.alicdn.com/t/font_1891359_8fgc6bszv3a.eot?#iefix') format('embedded-opentype'),
-  url('https:////at.alicdn.com/t/font_1891359_8fgc6bszv3a.woff2') format('woff2'),
-  url('https:////at.alicdn.com/t/font_1891359_8fgc6bszv3a.woff') format('woff'),
-  url('https:////at.alicdn.com/t/font_1891359_8fgc6bszv3a.ttf') format('truetype'),
-  url('https:////at.alicdn.com/t/font_1891359_8fgc6bszv3a.svg#iconfont') format('svg');
+	font-family: 'iconfont';
+	/* project id 1891359 */
+	src: url('https://at.alicdn.com/t/font_1891359_l2i7sg5oqkl.eot');
+	src: url('https://at.alicdn.com/t/font_1891359_l2i7sg5oqkl.eot?#iefix') format('embedded-opentype'),
+		url('https://at.alicdn.com/t/font_1891359_l2i7sg5oqkl.woff2') format('woff2'),
+		url('https://at.alicdn.com/t/font_1891359_l2i7sg5oqkl.woff') format('woff'),
+		url('https://at.alicdn.com/t/font_1891359_l2i7sg5oqkl.ttf') format('truetype'),
+		url('https://at.alicdn.com/t/font_1891359_l2i7sg5oqkl.svg#iconfont') format('svg');
 }
 .iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-family: "iconfont" !important;
+	font-size: 16px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
-.icon-yingxionglianmeng:before {
-  content: "\e77f";
+.icon-zhongxin:before {
+	content: "\e63f";
+}
+.icon-LOL-xiaguxianfeng:before {
+	content: "\e662";
 }
 .icon-yingxiong:before {
-  content: "\e60d";
-}
-.icon-paihangbang:before {
-  content: "\e63b";
+	content: "\e60d";
 }
 .icon-tiaozhan:before {
-  content: "\e6b3";
+	content: "\e6b3";
 }
 .icon-jiazai:before {
-  content: "\e801";
+	content: "\e801";
 }
 .icon-tishi:before {
-  content: "\e66a";
-}
-.icon-bofang:before {
-  content: "\e606";
-}
-.icon-bofang1:before {
-  content: "\e852";
+	content: "\e66a";
 }
 

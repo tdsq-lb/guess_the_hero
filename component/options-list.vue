@@ -9,7 +9,7 @@
 <script>
 	import {
 		isLogin
-	} from '../util/isLogin.js'
+	} from '../util/util.js'
 	export default {
 		data() {
 			return {
@@ -26,6 +26,7 @@
 		created() {},
 		methods: {
 			handleItem(e) {
+				// 次数限定
 				if (this.selectNumber >= 1) {
 					this.selectNumber = this.selectNumber - 1
 					this.$emit('handleSelectNumber', this.selectNumber);
@@ -101,11 +102,13 @@
 
 		.item {
 			width: 30%;
-			height: 50rpx;
-			line-height: 50rpx;
 			font-size: 25rpx;
 			margin: 15rpx 0;
-			background-image: url(https://tdsq.top/static/images/tft_battle_rank_tier_0.png);
+			border: 1rpx solid #bcbcbc;
+			padding: 12rpx 0;
+			box-sizing: border-box;
+			border-radius: 15rpx;
+			// background-image: url(https://tdsq.top/static/images/tft_battle_rank_tier_0.png);
 			background-repeat: no-repeat;
 			background-size: 100% 100%;
 

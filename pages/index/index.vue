@@ -20,6 +20,9 @@
 				</view>
 			</view>
 		</view>
+		<view class="goback" @click="handleGoBack">
+			返回
+		</view>
 	</view>
 </template>
 
@@ -42,6 +45,11 @@
 			handleSelect(e) {
 				const selectIndex = e.detail.value
 				this.$data.server = selectIndex
+			},
+			handleGoBack() {
+				uni.switchTab({
+					url: '/pages/user/user'
+				})
 			},
 			async handleStart() {
 				const gameId = this.$data.gameId
@@ -165,6 +173,20 @@
 					}
 				}
 			}
+		}
+
+		.goback {
+			position: absolute;
+			left: 40rpx;
+			bottom: 60%;
+			width: 100rpx;
+			height: 100rpx;
+			color: #c4a264;
+			background-image: url(../../static/images/head_round_golden_xlarge.png);
+			background-size: 100% 100%;
+			text-align: center;
+			line-height: 100rpx;
+			// background-color: red;
 		}
 
 		.uni-input-placeholder {
