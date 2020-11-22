@@ -1,12 +1,13 @@
 <template>
 	<view class="content">
+		<image class="content-bg" src="https://tdsq.top/static/images/index_bg.jpg" mode="scaleToFill" lazy-load @load="imageLoad" />
 		<view class="head">
-			<image src="../../static/images/logo-public.png" mode=""></image>
+			<image src="../../static/images/logo-public.png" mode="scaleToFill" lazy-load></image>
 		</view>
 		<view class="main">
 			<view class="option">
 				<view class="option_item">
-					<input type="text" placeholder="游戏ID" v-bind:value="gameId" @input="handleInputValue">
+					<input type="text" placeholder="游戏ID" v-bind:value="gameId" @input="handleInputValue" placeholder-style="color:#ddd">
 				</view>
 				<view class="option_item">
 					<picker class="option_item_txt" mode="selector" :range="array" @change="handleSelect">
@@ -38,13 +39,19 @@
 				server: 0,
 			}
 		},
+		created() {
+			uni.showLoading({
+				title: '加载中',
+				mask: true
+			});
+		},
 		methods: {
 			handleInputValue(e) {
-				this.$data.gameId = e.detail.value
+				this.gameId = e.detail.value
 			},
 			handleSelect(e) {
 				const selectIndex = e.detail.value
-				this.$data.server = selectIndex
+				this.server = selectIndex
 			},
 			handleGoBack() {
 				uni.switchTab({
@@ -52,8 +59,8 @@
 				})
 			},
 			async handleStart() {
-				const gameId = this.$data.gameId
-				const server = this.$data.server
+				const gameId = this.gameId
+				const server = this.server
 				if (gameId && server) {
 					const result = await this.$myRequest({
 						url: `/api/userinfo?gameid=${gameId}&server=${server}`
@@ -97,6 +104,10 @@
 						}
 					});
 				}
+			},
+			imageLoad(e) {
+				console.log(e.detail,'背景图片加载完成 =====>>>>')
+				uni.hideLoading();
 			}
 		}
 	}
@@ -104,20 +115,20 @@
 
 <style lang="scss">
 	.content {
-		position: absolute;
-		background-image: url(https://tdsq.top/static/images/index_bg.jpg);
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
 		width: 100%;
 		height: 100%;
+		.content-bg{
+			width: 100%;
+			height: 100%;
+		}
 
 		.head {
-			image {
-				width: 334rpx;
-				height: 120rpx;
-				margin: 0 auto;
-				display: block
-			}
+			width: 334rpx;
+			height: 120rpx;
+			position: absolute;
+			top: 20rpx;
+			left: 50%;
+			transform: translate(-50%);
 		}
 
 		.main {

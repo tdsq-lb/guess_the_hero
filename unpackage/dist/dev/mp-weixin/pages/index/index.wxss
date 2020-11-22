@@ -25,18 +25,21 @@
 /* 透明度 */
 /* 文章场景相关 */
 .content {
-  position: absolute;
-  background-image: url(https://tdsq.top/static/images/index_bg.jpg);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
   width: 100%;
   height: 100%;
 }
-.content .head image {
+.content .content-bg {
+  width: 100%;
+  height: 100%;
+}
+.content .head {
   width: 334rpx;
   height: 120rpx;
-  margin: 0 auto;
-  display: block;
+  position: absolute;
+  top: 20rpx;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
 }
 .content .main {
   position: absolute;

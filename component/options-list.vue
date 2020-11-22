@@ -8,7 +8,8 @@
 
 <script>
 	import {
-		isLogin
+		isLogin,
+		checkIsLogin
 	} from '../util/util.js'
 	export default {
 		data() {
@@ -26,59 +27,91 @@
 		created() {},
 		methods: {
 			handleItem(e) {
+				checkIsLogin()
 				// 次数限定
-				if (this.selectNumber >= 1) {
-					this.selectNumber = this.selectNumber - 1
-					this.$emit('handleSelectNumber', this.selectNumber);
+				// if (this.selectNumber >= 1) {
+				// 	this.selectNumber = this.selectNumber - 1
+				// 	this.$emit('handleSelectNumber', this.selectNumber);
 					// --------------------------------------
-					this.userInfo = isLogin()
-					const userid = this.userInfo.id
-					if (this.isanswe == e) {
-						const result = this.$myRequest({
-							url: `/api/answer?userid=${userid}`
-						})
-						this.$emit('handleShowMask')
-						uni.showModal({
-							showCancel: false,
-							content: '答案正确',
-							confirmText: '下一题',
-							success: (res) => {
-								if (res.confirm) {
-									console.log('用户点击确定');
-									this.$emit('handleNextQuestion')
-									this.selectNumber = 3
-									this.$emit('handleSelectNumber', this.selectNumber);
-									this.$emit('handleHideMask')
+					if(checkIsLogin()){
+						this.userInfo = isLogin()
+						const userid = this.userInfo.id
+						if (this.isanswe == e) {
+							const result = this.$myRequest({
+								url: `/api/answer?userid=${userid}`
+							})
+							this.$emit('handleShowMask')
+							uni.showModal({
+								content: '答案正确',
+								confirmText: '下一题',
+								success: (res) => {
+									if (res.confirm) {
+										console.log('用户点击确定');
+										this.$emit('handleNextQuestion')
+										this.selectNumber = 3
+										this.$emit('handleSelectNumber', this.selectNumber);
+										this.$emit('handleHideMask')
+									}
 								}
-							}
-						});
-					} else {
-						uni.showModal({
-							showCancel: false,
-							content: '请输入正确答案',
-							confirmText: '确定',
-							success: function(res) {
-								if (res.confirm) {
-									console.log('用户点击确定');
+							});
+						} else {
+							uni.showModal({
+								content: '请输入正确答案',
+								confirmText: '确定',
+								success: function(res) {
+									if (res.confirm) {
+										console.log('用户点击确定');
+									}
 								}
-							}
-						});
-					}
-				} else {
-					uni.showModal({
-						title: '提示',
-						content: '你没有了选择次数,是否选择看广告增加次数',
-						success: (res) => {
-							if (res.confirm) {
-								console.log('用户点击确定');
-								this.selectNumber = 3
-								this.$emit('handleSelectNumber', this.selectNumber);
-							} else if (res.cancel) {
-								console.log('用户点击取消');
-							}
+							});
 						}
-					});
-				}
+					}
+					// this.userInfo = isLogin()
+					// const userid = this.userInfo.id
+					// if (this.isanswe == e) {
+					// 	const result = this.$myRequest({
+					// 		url: `/api/answer?userid=${userid}`
+					// 	})
+					// 	this.$emit('handleShowMask')
+					// 	uni.showModal({
+					// 		content: '答案正确',
+					// 		confirmText: '下一题',
+					// 		success: (res) => {
+					// 			if (res.confirm) {
+					// 				console.log('用户点击确定');
+					// 				this.$emit('handleNextQuestion')
+					// 				this.selectNumber = 3
+					// 				this.$emit('handleSelectNumber', this.selectNumber);
+					// 				this.$emit('handleHideMask')
+					// 			}
+					// 		}
+					// 	});
+					// } else {
+					// 	uni.showModal({
+					// 		content: '请输入正确答案',
+					// 		confirmText: '确定',
+					// 		success: function(res) {
+					// 			if (res.confirm) {
+					// 				console.log('用户点击确定');
+					// 			}
+					// 		}
+					// 	});
+					// }
+				// } else {
+				// 	uni.showModal({
+				// 		title: '提示',
+				// 		content: '你没有了选择次数,是否选择看广告增加次数',
+				// 		success: (res) => {
+				// 			if (res.confirm) {
+				// 				console.log('用户点击确定');
+				// 				this.selectNumber = 3
+				// 				this.$emit('handleSelectNumber', this.selectNumber);
+				// 			} else if (res.cancel) {
+				// 				console.log('用户点击取消');
+				// 			}
+				// 		}
+				// 	});
+				// }
 
 			}
 		},

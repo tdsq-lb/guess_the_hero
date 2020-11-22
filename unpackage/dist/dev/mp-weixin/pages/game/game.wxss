@@ -28,11 +28,14 @@ page {
   background-color: black;
 }
 .game {
-  background-image: url(https://tdsq.top/static/images/bg.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
   width: 100%;
   height: 100%;
+}
+.game .game-bg {
+  width: 100%;
+  height: 992rpx;
 }
 .game .game-position {
   width: 20%;
@@ -76,8 +79,10 @@ page {
 .game .game-content {
   width: 94%;
   height: 80%;
-  -webkit-border-radius: 15rpx;
-          border-radius: 15rpx;
+  -webkit-border-top-left-radius: 15rpx;
+          border-top-left-radius: 15rpx;
+  -webkit-border-top-right-radius: 15rpx;
+          border-top-right-radius: 15rpx;
   background-color: #FFFFFF;
   position: absolute;
   bottom: 0;

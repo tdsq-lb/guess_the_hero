@@ -1,7 +1,7 @@
 <template>
 	<view class="list">
 		<view class="list-banner">
-			<image src="https://tdsq.top/static/images/banner.png" lazy-load mode="scaleToFill"></image>
+			<image src="https://tdsq.top/static/images/banner.png" lazy-load mode="scaleToFill" @load="imageLoad"></image>
 		</view>
 		<view class="list-content">
 			<view class="list-content-item" v-for="(item,index) in data" :key="item.id">
@@ -21,15 +21,25 @@
 </template>
 
 <script>
-	import {getImgUrl} from '../../util/util.js'
+	import {
+		getImgUrl
+	} from '../../util/util.js'
 	export default {
 		data() {
 			return {
 				data: []
 			}
 		},
+		onShow() {
+			console.log('重新显示  ================== >>>>')
+			this.initData()
+		},
 		created() {
 			this.initData()
+			uni.showLoading({
+				title: '加载中',
+				mask: true
+			});
 		},
 		methods: {
 			async initData() {
@@ -51,6 +61,10 @@
 					return `https://cdn.tgp.qq.com/lol/images/resources/usericon/${img}`
 				}
 			},
+			imageLoad(e) {
+				console.log('背景图片加载完成 =====>>>>')
+				uni.hideLoading();
+			}
 		}
 	}
 </script>
@@ -103,8 +117,9 @@
 				text-align: center;
 			}
 		}
+
 		// .list-rule{
-			
+
 		// }
 	}
 </style>

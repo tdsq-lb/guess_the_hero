@@ -1,5 +1,6 @@
 <template>
 	<view class="game">
+		<image class="game-bg" src="https://tdsq.top/static/images/bg.jpg" mode="scaleToFill" lazy-load @load="imageLoad" />
 		<!-- <view class="game-position">
 			<view class="game-position-power">
 				<Power ref="childPowerRef" />
@@ -16,7 +17,7 @@
 				</view> -->
 			</view>
 			<view class="game-content-image">
-				<image src="https://tdsq.top/static/images/heroshow.png" mode="scaleToFill" lazy-load v-show="isCorrect"></image>
+				<image src="https://tdsq.top/static/images/heroshow.png" mode="scaleToFill" lazy-load @load="imageLoad" v-show="isCorrect"></image>
 				<view class="game-content-image-frame" v-show="!isCorrect">
 					<image :src="getImgUrl(topicItem.images)" mode="scaleToFill" lazy-load></image>
 					<!-- <view class="game-content-image-frame-Mask" v-show="isCorrect">
@@ -39,7 +40,9 @@
 </template>
 
 <script>
-	import {checkIsLogin} from '../../util/util.js'
+	import {
+		checkIsLogin
+	} from '../../util/util.js'
 	import Power from 'component/power.vue'
 	import Select from 'component/select-number.vue'
 	import ImtAudio from 'component/imt-audio.vue'
@@ -69,6 +72,10 @@
 		},
 		created() {
 			this.initData()
+			uni.showLoading({
+				title: '加载中',
+				mask: true
+			});
 		},
 		methods: {
 			// 选择次数 传递给Select子组件
@@ -129,21 +136,31 @@
 					return `https://tdsq.top/static/lol_img/${img}`
 				}
 			},
+			imageLoad(e) {
+				console.log(e.detail,'背景图片加载完成 =====>>>>')
+				uni.hideLoading();
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	page{
+	page {
 		background-color: black;
 	}
+
 	.game {
 		// position: absolute;
-		background-image: url(https://tdsq.top/static/images/bg.jpg);
+		// background-image: url(https://tdsq.top/static/images/bg.jpg);
 		background-repeat: no-repeat;
 		background-size: 100%;
 		width: 100%;
 		height: 100%;
+
+		.game-bg {
+			width: 100%;
+			height: 992rpx;
+		}
 
 		.game-position {
 			width: 20%;
@@ -182,7 +199,9 @@
 		.game-content {
 			width: 94%;
 			height: 80%;
-			border-radius: 15rpx;
+			// border-radius: 15rpx;
+			border-top-left-radius: 15rpx;
+			border-top-right-radius: 15rpx;
 			background-color: #FFFFFF;
 			position: absolute;
 			bottom: 0;
@@ -217,7 +236,7 @@
 			box-sizing: border-box;
 			margin: 20rpx auto;
 			padding: 5rpx;
-			position: relative;	
+			position: relative;
 
 			.game-content-image-frame {
 				width: 100%;
@@ -225,7 +244,7 @@
 				border: 1px solid #ccb089;
 				box-sizing: border-box;
 				position: relative;
-			
+
 				.game-content-image-frame-Mask {
 					width: 100%;
 					height: 100%;

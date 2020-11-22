@@ -7882,9 +7882,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!******************************************!*\
-  !*** F:/台词猜英雄/guess_the_hero/pages.json ***!
-  \******************************************/
+/*!********************************************************!*\
+  !*** C:/Users/57855/Desktop/guess_the_hero/pages.json ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8025,9 +8025,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 11 */
-/*!***********************************************!*\
-  !*** F:/台词猜英雄/guess_the_hero/util/request.js ***!
-  \***********************************************/
+/*!*************************************************************!*\
+  !*** C:/Users/57855/Desktop/guess_the_hero/util/request.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8037,11 +8037,15 @@ function normalizeComponent (
 
 var myRequest = function myRequest(options) {
   return new Promise(function (resolve, reject) {
+    uni.showLoading({
+      // title: '加载中'
+    });
     uni.request({
       url: BASE_URL + options.url,
       method: options.method || 'GET',
       data: options.data || {},
       success: function success(res) {
+        uni.hideLoading();
         if (res.statusCode !== 200) {
           uni.showToast({
             icon: "none",
@@ -8859,9 +8863,9 @@ if (hadRuntime) {
 
 /***/ }),
 /* 21 */
-/*!********************************************!*\
-  !*** F:/台词猜英雄/guess_the_hero/util/util.js ***!
-  \********************************************/
+/*!**********************************************************!*\
+  !*** C:/Users/57855/Desktop/guess_the_hero/util/util.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8909,9 +8913,9 @@ var checkIsLogin = function checkIsLogin() {
 /* 25 */,
 /* 26 */,
 /* 27 */
-/*!**************************************************!*\
-  !*** F:/台词猜英雄/guess_the_hero/util/power_util.js ***!
-  \**************************************************/
+/*!****************************************************************!*\
+  !*** C:/Users/57855/Desktop/guess_the_hero/util/power_util.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
