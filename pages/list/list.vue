@@ -6,11 +6,11 @@
 		<view class="list-content">
 			<view class="list-content-item" v-for="(item,index) in data" :key="item.id">
 				<view class="list-content-item-user">
-					<image class="avatar" :src="(getImgUrl(item.photo))" lazy-load mode="scaleToFill" :data-index="index" @error="imageError"></image>
+					<image class="avatar" :src="(getImgUrl(item.avatar))" lazy-load mode="scaleToFill" :data-index="index" @error="imageError"></image>
 					<text class="name">{{item.name}}</text>
 				</view>
 				<view class="list-content-item-answer">
-					{{item.week_topic}}
+					{{item.answer}}
 				</view>
 			</view>
 		</view>

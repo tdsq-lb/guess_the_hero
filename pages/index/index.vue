@@ -106,7 +106,7 @@
 				}
 			},
 			imageLoad(e) {
-				console.log(e.detail,'背景图片加载完成 =====>>>>')
+				console.log(e.detail, '背景图片加载完成 =====>>>>')
 				uni.hideLoading();
 			}
 		}
@@ -117,7 +117,8 @@
 	.content {
 		width: 100%;
 		height: 100%;
-		.content-bg{
+
+		.content-bg {
 			width: 100%;
 			height: 100%;
 		}

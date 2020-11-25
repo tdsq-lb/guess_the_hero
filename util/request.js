@@ -9,7 +9,10 @@ export const myRequest = (options) => {
 		uni.request({
 			url: BASE_URL + options.url,
 			method: options.method || 'GET',
-			data: options.data || {},
+			if (options) {
+				data: options.data
+			},
+			// data: options.data || {},
 			success: (res) => {
 				uni.hideLoading();
 				if (res.statusCode !== 200) {

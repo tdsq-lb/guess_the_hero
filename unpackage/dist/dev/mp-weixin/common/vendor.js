@@ -7882,9 +7882,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!********************************************************!*\
-  !*** C:/Users/57855/Desktop/guess_the_hero/pages.json ***!
-  \********************************************************/
+/*!******************************************!*\
+  !*** F:/台词猜英雄/guess_the_hero/pages.json ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8025,9 +8025,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 11 */
-/*!*************************************************************!*\
-  !*** C:/Users/57855/Desktop/guess_the_hero/util/request.js ***!
-  \*************************************************************/
+/*!***********************************************!*\
+  !*** F:/台词猜英雄/guess_the_hero/util/request.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8043,7 +8043,10 @@ var myRequest = function myRequest(options) {
     uni.request({
       url: BASE_URL + options.url,
       method: options.method || 'GET',
-      data: options.data || {},
+      if: function _if(options) {
+        data: options.data;
+      },
+      // data: options.data || {},
       success: function success(res) {
         uni.hideLoading();
         if (res.statusCode !== 200) {
@@ -8863,9 +8866,9 @@ if (hadRuntime) {
 
 /***/ }),
 /* 21 */
-/*!**********************************************************!*\
-  !*** C:/Users/57855/Desktop/guess_the_hero/util/util.js ***!
-  \**********************************************************/
+/*!********************************************!*\
+  !*** F:/台词猜英雄/guess_the_hero/util/util.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8913,9 +8916,9 @@ var checkIsLogin = function checkIsLogin() {
 /* 25 */,
 /* 26 */,
 /* 27 */
-/*!****************************************************************!*\
-  !*** C:/Users/57855/Desktop/guess_the_hero/util/power_util.js ***!
-  \****************************************************************/
+/*!**************************************************!*\
+  !*** F:/台词猜英雄/guess_the_hero/util/power_util.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

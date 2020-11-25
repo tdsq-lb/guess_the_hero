@@ -54,9 +54,25 @@
 		isLogin
 	} from '../../util/util.js'
 	export default {
+		onShow: function(options) {
+			console.log('onLoad ================>>>>')
+			const istrue = isLogin()
+			if (istrue) {
+				this.islogin = true
+				this.userdata = Object.assign(this.userdata, isLogin())
+			} else {
+				this.islogin = false
+			}
+			
+		},
 		data() {
 			return {
-				userdata: null,
+				userdata: {
+					area: '',
+					name: '',
+					avatar: '',
+					flexible_SET_of_row: ''
+				},
 				islogin: true
 			}
 		},
@@ -95,7 +111,7 @@
 			const istrue = isLogin()
 			if (istrue) {
 				this.islogin = true
-				this.userdata = isLogin()
+				this.userdata = Object.assign(this.userdata, isLogin())
 			} else {
 				this.islogin = false
 			}
@@ -143,7 +159,6 @@
 				if (e) {
 					const rank = e.substring(0, 2)
 					let flexible = '/static/images/'
-					console.log(rank)
 					switch (rank) {
 						case '黑铁':
 							flexible = flexible + 'icon_ht.png'
@@ -226,6 +241,7 @@
 			width: 440rpx;
 			height: 550rpx;
 		}
+
 		.forward {
 			width: 70%;
 			height: 100rpx;
@@ -278,7 +294,7 @@
 
 		}
 
-	
+
 
 		.box {
 			width: 320rpx;

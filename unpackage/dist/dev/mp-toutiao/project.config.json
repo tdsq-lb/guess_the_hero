@@ -1,29 +1,11 @@
 {
-	"setting": {
-		"urlCheck": false,
-		"es6": false,
-		"postcss": false,
-		"minified": false,
-		"newFeature": true
-	},
-	"appid": "tt576321dec8589e51",
-	"projectname": "guess_the_hero",
-	"condition": {
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "a",
-					"pathName": "pages/user/user",
-					"query": "",
-					"scene": "011001",
-					"referrerInfo": {
-						"appId": "",
-						"extraData": ""
-					}
-				}
-			]
-		}
-	}
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false,
+    "newFeature": true
+  },
+  "appid": "tt576321dec8589e51",
+  "projectname": "guess_the_hero"
 }
