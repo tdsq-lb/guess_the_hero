@@ -1,7 +1,7 @@
 <template>
 	<view class="list">
 		<view class="list-banner">
-			<image src="https://tdsq.top/static/images/banner.png" lazy-load mode="scaleToFill" @load="imageLoad"></image>
+			<image :src="this.imgSrc('banner.png')" lazy-load mode="scaleToFill" @load="imageLoad"></image>
 		</view>
 		<view class="list-content">
 			<view class="list-content-item" v-for="(item,index) in data" :key="item.id">
@@ -51,7 +51,7 @@
 			// 图片加载发生错误
 			imageError(e) {
 				const index = e.target.dataset.index;
-				this.data[index].photo = 'no_anchor_living.png'
+				this.data[index].avatar = 'no_anchor_living.png'
 			},
 			getImgUrl(img) {
 				let errimg = 'no_anchor_living.png'

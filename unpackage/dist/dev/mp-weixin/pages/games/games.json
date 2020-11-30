@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "lol-progress": "/components/Yumcc-DiDiProgress/index",
+    "aa": "/component/aa"
+  }
+}

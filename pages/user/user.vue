@@ -1,8 +1,8 @@
 <template>
 	<view class="user">
-		<image class="user-bg" src="https://tdsq.top/static/images/bg.jpg" mode="scaleToFill" lazy-load @load="imageLoad" />
+		<image class="user-bg" :src="this.imgSrc('bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad" />
 		<view class="user-content">
-			<image class="user-content-image" src="https://tdsq.top/static/images/bg-msg.png" mode="scaleToFill" lazy-load @load="imageLoad" />
+			<image class="user-content-image" :src="this.imgSrc('bg-msg.png')" mode="scaleToFill" lazy-load @load="imageLoad" />
 			<view class="reset" @click="handleRemoveUser">
 				<text class="iconfont icon-zhongxin"></text>
 				<text>重新绑定ID</text>
@@ -29,7 +29,7 @@
 							<text>{{userdata.name}}</text>
 						</view>
 						<view class="box2-img">
-							<image :src="getImgUrl(userdata.flexible_SET_of_row)" lazy-load mode="scaleToFill" @error="imageError"></image>
+							<image :src="getRankImgSrc(userdata.flexible_SET_of_row)" lazy-load mode="scaleToFill" @error="imageError"></image>
 						</view>
 						<view class="box2-rank">
 							{{userdata.flexible_SET_of_row}}
@@ -55,7 +55,6 @@
 	} from '../../util/util.js'
 	export default {
 		onShow: function(options) {
-			console.log('onLoad ================>>>>')
 			const istrue = isLogin()
 			if (istrue) {
 				this.islogin = true
@@ -63,7 +62,6 @@
 			} else {
 				this.islogin = false
 			}
-			
 		},
 		data() {
 			return {
@@ -78,7 +76,6 @@
 		},
 		// #ifdef MP-TOUTIAO 
 		onShareAppMessage(option) {
-			// option.from === 'button'
 			return {
 				title: '台词猜英雄',
 				desc: '英雄联盟听台词猜英雄，赢免费皮肤',
@@ -106,7 +103,6 @@
 		created() {
 			uni.showLoading({
 				title: '加载中',
-				mask: true
 			});
 			const istrue = isLogin()
 			if (istrue) {
@@ -120,8 +116,8 @@
 		methods: {
 			// 登录
 			handleIsLogin() {
-				uni.redirectTo({
-					url: '../index/index'
+				uni.navigateTo({
+					url: '../login/login'
 				})
 			},
 			// 删除用户
@@ -134,8 +130,8 @@
 							uni.removeStorage({
 								key: 'USER-INFO',
 								success: (res) => {
-									uni.redirectTo({
-										url: '../index/index'
+									uni.navigateTo({
+										url: '../login/login'
 									})
 								}
 							})
@@ -144,7 +140,6 @@
 						}
 					}
 				});
-
 			},
 			// 图片加载发生错误
 			imageError(e) {
@@ -154,8 +149,7 @@
 				console.log(e.detail, '背景图片加载完成 =====>>>>')
 				uni.hideLoading();
 			},
-			getImgUrl(e) {
-				console.log(e, '111111111111111')
+			getRankImgSrc(e) {
 				if (e) {
 					const rank = e.substring(0, 2)
 					let flexible = '/static/images/'

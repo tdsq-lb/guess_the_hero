@@ -8,7 +8,7 @@
 			"style": {}
 		},
 		{
-			"path": "pages/index/index",
+			"path": "pages/login/login",
 			"style": {}
 		}, {
 			"path": "pages/list/list",
@@ -16,7 +16,20 @@
 				"navigationBarTitleText": "排行榜"
 			}
 		}, {
-			"path": "component/power"
+			"path": "component/power",
+			"style": {}
+		}, {
+			"path": "pages/index/index",
+			"style": {}
+
+		}, {
+			"path": "pages/start/start",
+			"style": {}
+
+		}, {
+			"path": "pages/games/games",
+			"style": {}
+
 		}
 	],
 	"tabBar": {
@@ -25,7 +38,7 @@
 		"backgroundColor": "white",
 		// active
 		"list": [{
-				"pagePath": "pages/game/game",
+				"pagePath": "pages/index/index",
 				"iconPath": "static/images/challenge.png",
 				"selectedIconPath": "static/images/challenge_active.png"
 			},

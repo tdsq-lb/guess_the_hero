@@ -1,6 +1,6 @@
 <template>
 	<view class="game">
-		<image class="game-bg" src="https://tdsq.top/static/images/bg.jpg" mode="scaleToFill" lazy-load @load="imageLoad" />
+		<image class="game-bg" :src="this.imgSrc('bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad" />
 		<!-- <view class="game-position">
 			<view class="game-position-power">
 				<Power ref="childPowerRef" />

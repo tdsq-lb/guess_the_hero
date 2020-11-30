@@ -105,6 +105,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = this.imgSrc("bg.jpg")
   var m0 = _vm.getImgUrl(_vm.topicItem.images)
 
   if (!_vm._isMounted) {
@@ -121,6 +122,7 @@ var render = function() {
     {},
     {
       $root: {
+        g0: g0,
         m0: m0
       }
     }

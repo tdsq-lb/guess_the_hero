@@ -97,11 +97,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var m0 = _vm.islogin ? _vm.getImgUrl(_vm.userdata.flexible_SET_of_row) : null
+  var g0 = this.imgSrc("bg.jpg")
+  var g1 = this.imgSrc("bg-msg.png")
+  var m0 = _vm.islogin
+    ? _vm.getRankImgSrc(_vm.userdata.flexible_SET_of_row)
+    : null
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
+        g0: g0,
+        g1: g1,
         m0: m0
       }
     }
@@ -242,12 +248,8 @@ var _util = __webpack_require__(/*! ../../util/util.js */ 21); //
 //
 //
 //
-var _default = { onShow: function onShow(options) {console.log('onLoad ================>>>>');var istrue = (0, _util.isLogin)();if (istrue) {this.islogin = true;this.userdata = Object.assign(this.userdata, (0, _util.isLogin)());} else {this.islogin = false;}}, data: function data() {return { userdata: { area: '', name: '', avatar: '', flexible_SET_of_row: '' }, islogin: true };}, onShareAppMessage: function onShareAppMessage() {return { title: '英雄联盟听台词猜英雄', path: '/pages/user/user', success: function success(res) {} };},
-
-  created: function created() {
-    uni.showLoading({
-      title: '加载中',
-      mask: true });
+var _default = { onShow: function onShow(options) {var istrue = (0, _util.isLogin)();if (istrue) {this.islogin = true;this.userdata = Object.assign(this.userdata, (0, _util.isLogin)());} else {this.islogin = false;}}, data: function data() {return { userdata: { area: '', name: '', avatar: '', flexible_SET_of_row: '' }, islogin: true };}, onShareAppMessage: function onShareAppMessage() {return { title: '英雄联盟听台词猜英雄', path: '/pages/user/user', success: function success(res) {} };}, created: function created() {uni.showLoading({
+      title: '加载中' });
 
     var istrue = (0, _util.isLogin)();
     if (istrue) {
@@ -261,8 +263,8 @@ var _default = { onShow: function onShow(options) {console.log('onLoad =========
   methods: {
     // 登录
     handleIsLogin: function handleIsLogin() {
-      uni.redirectTo({
-        url: '../index/index' });
+      uni.navigateTo({
+        url: '../login/login' });
 
     },
     // 删除用户
@@ -275,8 +277,8 @@ var _default = { onShow: function onShow(options) {console.log('onLoad =========
             uni.removeStorage({
               key: 'USER-INFO',
               success: function success(res) {
-                uni.redirectTo({
-                  url: '../index/index' });
+                uni.navigateTo({
+                  url: '../login/login' });
 
               } });
 
@@ -284,7 +286,6 @@ var _default = { onShow: function onShow(options) {console.log('onLoad =========
             console.log('用户点击取消');
           }
         } });
-
 
     },
     // 图片加载发生错误
@@ -295,8 +296,7 @@ var _default = { onShow: function onShow(options) {console.log('onLoad =========
       console.log(e.detail, '背景图片加载完成 =====>>>>');
       uni.hideLoading();
     },
-    getImgUrl: function getImgUrl(e) {
-      console.log(e, '111111111111111');
+    getRankImgSrc: function getRankImgSrc(e) {
       if (e) {
         var rank = e.substring(0, 2);
         var flexible = '/static/images/';

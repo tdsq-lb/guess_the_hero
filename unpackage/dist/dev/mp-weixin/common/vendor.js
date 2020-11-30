@@ -8032,7 +8032,8 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequest = void 0;var BASE_URL = "https://tdsq.top";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequest = void 0; // const BASE_URL = "https://tdsq.top"
+var BASE_URL = "https://www.findobejects.cn";
 // const BASE_URL = "http://localhost:3000"
 
 var myRequest = function myRequest(options) {

@@ -97,6 +97,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = this.imgSrc("banner.png")
+
   var l0 = _vm.__map(_vm.data, function(item, index) {
     var $orig = _vm.__get_orig(item)
 
@@ -111,6 +113,7 @@ var render = function() {
     {},
     {
       $root: {
+        g0: g0,
         l0: l0
       }
     }
@@ -201,7 +204,7 @@ var _util = __webpack_require__(/*! ../../util/util.js */ 21);function _interopR
     // 图片加载发生错误
     imageError: function imageError(e) {
       var index = e.target.dataset.index;
-      this.data[index].photo = 'no_anchor_living.png';
+      this.data[index].avatar = 'no_anchor_living.png';
     },
     getImgUrl: function getImgUrl(img) {
       var errimg = 'no_anchor_living.png';

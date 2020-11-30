@@ -2,9 +2,12 @@
   "pages": [
     "pages/game/game",
     "pages/user/user",
-    "pages/index/index",
+    "pages/login/login",
     "pages/list/list",
-    "component/power"
+    "component/power",
+    "pages/index/index",
+    "pages/start/start",
+    "pages/games/games"
   ],
   "subPackages": [],
   "window": {
@@ -19,7 +22,7 @@
     "backgroundColor": "white",
     "list": [
       {
-        "pagePath": "pages/game/game",
+        "pagePath": "pages/index/index",
         "iconPath": "static/images/challenge.png",
         "selectedIconPath": "static/images/challenge_active.png"
       },
@@ -35,6 +38,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap54.json"
+  "usingComponents": {}
 }
