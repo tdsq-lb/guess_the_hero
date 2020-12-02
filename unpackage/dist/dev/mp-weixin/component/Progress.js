@@ -132,11 +132,7 @@ var _default =
   props: {
     // 最终百分比
     currentPercent: {
-      type: Number },
-
-    // 圆点颜色
-    iscorrectColor: {
-      type: String } },
+      type: Number } },
 
 
   data: function data() {
@@ -147,6 +143,8 @@ var _default =
       circleY: 0, // 中心y坐标
       radius: 0, // 圆环半径
       ctx: null,
+      // 圆点颜色
+      iscorrectColor: "#67c23a",
       Dots: [{
         percent: 0 // 百分比
       },

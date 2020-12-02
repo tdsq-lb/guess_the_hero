@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "lol-progress": "/component/Progress",
-    "yuan": "/component/yuan"
+    "player": "/component/player"
   }
 }

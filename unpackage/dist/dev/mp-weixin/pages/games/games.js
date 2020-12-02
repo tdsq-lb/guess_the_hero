@@ -130,7 +130,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var lolProgress = function lolProgress() {__webpack_require__.e(/*! require.ensure | component/Progress */ "component/Progress").then((function () {return resolve(__webpack_require__(/*! ../../component/Progress.vue */ 79));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var yuan = function yuan() {__webpack_require__.e(/*! require.ensure | component/yuan */ "component/yuan").then((function () {return resolve(__webpack_require__(/*! ../../component/yuan.vue */ 115));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 27));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var lolProgress = function lolProgress() {__webpack_require__.e(/*! require.ensure | component/Progress */ "component/Progress").then((function () {return resolve(__webpack_require__(/*! ../../component/Progress.vue */ 79));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var player = function player() {__webpack_require__.e(/*! require.ensure | component/player */ "component/player").then((function () {return resolve(__webpack_require__(/*! ../../component/player.vue */ 84));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 
 
@@ -150,25 +151,56 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   data: function data() {
     return {
       currentPercent: 0, // 当前百分比
-      iscorrectColor: "#67c23a", // "#f56c6c"
-      toJSON: '' };
-
+      toJSON: '',
+      audioUrl: '', // 音频链接
+      optionArray: [], // 选项组
+      answe: "" // 正确答案
+    };
   },
   created: function created() {
-
+    this.getAudio();
   },
   mounted: function mounted() {
-    // this.$refs.progress.init()
+    this.$refs.progress.init();
   },
   components: {
     lolProgress: lolProgress,
-    yuan: yuan },
+    player: player },
 
   methods: {
+    getAudio: function getAudio() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result, num;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _this.$myRequest({
+                    url: "/api/topic" }));case 2:result = _context.sent;
+
+                num = Math.floor(Math.random() * (4 - 0) + 0);
+                _this.audioUrl = _this.staticUrl("wav/".concat(result.data.data.wav[num]));
+                _this.optionArray = result.data.selectNameArr;
+                _this.answe = result.data.data.name;case 7:case "end":return _context.stop();}}}, _callee);}))();
+    },
     handleBtn: function handleBtn() {
       this.currentPercent += 20;
       this.$refs.progress.init();
+    },
+    handleOptions: function handleOptions(e) {
+      if (this.answe == e) {
+        uni.showModal({
+          content: '答案正确',
+          confirmText: "下一题",
+          success: function success(res) {
+            console.log('用户点击了确定');
+          } });
+
+      } else {
+        uni.showModal({
+          content: '答案错误',
+          confirmText: "确定",
+          success: function success(res) {
+            console.log('用户点击了确定');
+          } });
+
+      }
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

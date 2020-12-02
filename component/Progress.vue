@@ -1,7 +1,7 @@
 <template>
 	<view style="position: relative;">
 		<view>
-			<canvas :style="{ backgroundColor: canvasStyle.canvasBgColor }" style="display: block; z-index: 0; width: 100%; height: 70vw"
+			<canvas style="display: block; z-index: 0; width: 100%; height: 70vw"
 			 canvas-id="progress">
 			</canvas>
 		</view>
@@ -19,10 +19,6 @@
 			// 最终百分比
 			currentPercent: {
 				type: Number
-			},
-			// 圆点颜色
-			iscorrectColor: {
-				type: String
 			}
 		},
 		data() {
@@ -33,6 +29,8 @@
 				circleY: 0, // 中心y坐标
 				radius: 0, // 圆环半径
 				ctx: null,
+				// 圆点颜色
+				iscorrectColor:"#67c23a",
 				Dots: [{
 						percent: 0 // 百分比
 					},

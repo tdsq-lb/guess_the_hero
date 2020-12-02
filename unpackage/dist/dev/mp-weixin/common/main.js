@@ -15,8 +15,8 @@ var _request = __webpack_require__(/*! util/request.js */ 11);function _interopR
 
 _vue.default.config.productionTip = false;
 _vue.default.prototype.$myRequest = _request.myRequest;
-_vue.default.prototype.imgSrc = function (e) {
-  return "https://www.findobejects.cn/images/".concat(e);
+_vue.default.prototype.staticUrl = function (e) {
+  return "https://www.findobejects.cn/".concat(e);
 };
 
 _App.default.mpType = 'app';

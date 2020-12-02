@@ -6,8 +6,8 @@ import {
 
 Vue.config.productionTip = false
 Vue.prototype.$myRequest = myRequest
-Vue.prototype.imgSrc = (e) => {
-	return `https://www.findobejects.cn/images/${e}`
+Vue.prototype.staticUrl = (e) => {
+	return `https://www.findobejects.cn/${e}`
 }
 
 App.mpType = 'app'

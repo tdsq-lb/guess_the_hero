@@ -60,14 +60,7 @@
 			play() {
 				this.audio.play()
 				this.loading = true
-			},
-			// 获取src路径
-			getAudioUrl(e) {
-				const BASE_URL = 'https://tdsq.top/static/wav/'
-				if (e) {
-					return BASE_URL + e
-				}
-			},
+			}
 		},
 		created() {
 			this.audio.obeyMuteSwitch = false
