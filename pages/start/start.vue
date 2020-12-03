@@ -1,6 +1,6 @@
 <template>
 	<view class="start">
-		<image class="start-bg" :src="this.imgSrc('start_bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad"></image>
+		<image class="start-bg" :src="this.staticUrl('images/start_bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad"></image>
 		<view class="start-content">
 			<button @click="handleBtn">点击开始</button>
 		</view>

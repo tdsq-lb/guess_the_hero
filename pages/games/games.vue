@@ -1,14 +1,16 @@
 <template>
 	<view class="games">
-		<lolProgress ref='progress' :currentPercent='currentPercent'></lolProgress>
-		<view class="games-player">
-			<player :audioUrl="audioUrl" />
+		<view class="games-progress">
+			<lolProgress ref='progress' :currentPercent='currentPercent'></lolProgress>
 		</view>
-		<view class="games-option">
+		<view class="games-player">
+			<player ref="player" :audioUrl = "audioUrl"></player>
+		</view>
+		<!-- 	<view class="games-option">
 			<view @click="handleOptions(item,index)" v-for="(item,index) in optionArray" :key="index" :class="isactive == index ? isanswe:''">
 				{{item}}
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -19,6 +21,7 @@
 		data() {
 			return {
 				currentPercent: 0, // 当前百分比
+				currentPercent1: 70,
 				toJSON: '',
 				audioUrl: '', // 音频链接
 				optionArray: [], // 选项组
@@ -32,6 +35,7 @@
 		},
 		mounted() {
 			this.$refs.progress.init()
+			this.$refs.player.init()
 		},
 		components: {
 			lolProgress,
@@ -52,7 +56,7 @@
 				this.$refs.progress.init()
 			},
 			handleOptions(e, index) {
-				console.log(e,index,'===========>>>')
+				console.log(e, index, '===========>>>')
 				this.isactive = index
 				if (this.answe == e) {
 					this.isanswe = "correct"
@@ -85,13 +89,23 @@
 		height: 100%;
 		background-color: #23253a;
 
-		.games-player {
-			width: 300rpx;
-			height: 300rpx;
+		.games-progress {
+			width: 100%;
+			height: 70vw;
 			position: absolute;
-			left: 50%;
-			top: 110rpx;
-			transform: translate(-50%);
+			left: 0;
+			top: 0;
+			z-index: 9;
+		}
+
+		.games-player {
+			width: 100%;
+			height: 70vw;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 10;
+			// transform: translate(-50%);
 		}
 
 		.games-option {
@@ -122,7 +136,7 @@
 			}
 
 			.correct {
-				background-color:#007AFF;
+				background-color: #007AFF;
 			}
 
 			.error {
