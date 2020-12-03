@@ -48,6 +48,7 @@
 				})
 				const num = Math.floor(Math.random() * (4 - 0) + 0)
 				this.audioUrl = this.staticUrl(`wav/${result.data.data.wav[num]}`)
+				console.log(this.audioUrl)
 				this.optionArray = result.data.selectNameArr
 				this.answe = result.data.data.name
 			},
