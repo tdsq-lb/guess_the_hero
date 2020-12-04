@@ -1,7 +1,7 @@
 <template>
 	<view class="list">
 		<view class="list-banner">
-			<image :src="this.imgSrc('banner.png')" lazy-load mode="scaleToFill" @load="imageLoad"></image>
+			<image :src="this.staticUrl('images/banner.png')" lazy-load mode="scaleToFill" @load="imageLoad"></image>
 		</view>
 		<view class="list-content">
 			<view class="list-content-item" v-for="(item,index) in data" :key="item.id">
@@ -14,9 +14,6 @@
 				</view>
 			</view>
 		</view>
-		<!-- <view class="list-rule">
-
-		</view> -->
 	</view>
 </template>
 

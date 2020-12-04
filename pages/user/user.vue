@@ -1,8 +1,8 @@
 <template>
 	<view class="user">
-		<image class="user-bg" :src="this.imgSrc('bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad" />
+		<image class="user-bg" :src="this.staticUrl('images/bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad" />
 		<view class="user-content">
-			<image class="user-content-image" :src="this.imgSrc('bg-msg.png')" mode="scaleToFill" lazy-load @load="imageLoad" />
+			<image class="user-content-image" :src="this.staticUrl('images/bg-msg.png')" mode="scaleToFill" lazy-load @load="imageLoad" />
 			<view class="reset" @click="handleRemoveUser">
 				<text class="iconfont icon-zhongxin"></text>
 				<text>重新绑定ID</text>

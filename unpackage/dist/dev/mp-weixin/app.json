@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/user/user",
     "pages/login/login",
     "pages/list/list",
     "component/power",
-    "pages/index/index",
     "pages/start/start",
     "pages/games/games",
     "pages/game/game"
@@ -39,5 +39,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap13.json"
+  "sitemapLocation": "sitemap78.json"
 }

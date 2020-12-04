@@ -1984,52 +1984,6 @@ var myRequest = function myRequest(options) {
 
 /***/ }),
 
-/***/ 18:
-/*!********************************************!*\
-  !*** F:/台词猜英雄/guess_the_hero/util/util.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.checkIsLogin = exports.isLogin = void 0;var isLogin = function isLogin() {
-  try {
-    var value = uni.getStorageSync('USER-INFO');
-    if (value) {
-      return value;
-    }
-  } catch (e) {
-    // error
-  }
-};exports.isLogin = isLogin;
-var checkIsLogin = function checkIsLogin() {
-  try {
-    var value = uni.getStorageSync('USER-INFO');
-    if (value) {
-      return value;
-    } else {
-      uni.showModal({
-        title: '提示',
-        content: '您还未登录，请先登录',
-        success: function success(res) {
-          if (res.confirm) {
-            uni.redirectTo({
-              url: '../index/index' });
-
-          } else if (res.cancel) {
-            console.log('用户取消了登录');
-          }
-        } });
-
-    }
-  } catch (e) {
-    // error
-  }
-};exports.checkIsLogin = checkIsLogin;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
@@ -8077,18 +8031,95 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 27:
+/***/ 26:
+/*!********************************************!*\
+  !*** F:/台词猜英雄/guess_the_hero/util/util.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.checkIsLogin = exports.isLogin = void 0;var isLogin = function isLogin() {
+  try {
+    var value = uni.getStorageSync('USER-INFO');
+    if (value) {
+      return value;
+    }
+  } catch (e) {
+    // error
+  }
+};exports.isLogin = isLogin;
+var checkIsLogin = function checkIsLogin() {
+  try {
+    var value = uni.getStorageSync('USER-INFO');
+    if (value) {
+      return value;
+    } else {
+      uni.showModal({
+        title: '提示',
+        content: '您还未登录，请先登录',
+        success: function success(res) {
+          if (res.confirm) {
+            uni.redirectTo({
+              url: '../index/index' });
+
+          } else if (res.cancel) {
+            console.log('用户取消了登录');
+          }
+        } });
+
+    }
+  } catch (e) {
+    // error
+  }
+};exports.checkIsLogin = checkIsLogin;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 35:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 28);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 36);
 
 /***/ }),
 
-/***/ 28:
+/***/ 36:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8119,7 +8150,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 29);
+module.exports = __webpack_require__(/*! ./runtime */ 37);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8136,7 +8167,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 29:
+/***/ 37:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -8868,37 +8899,6 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
 /***/ 4:
 /*!******************************************!*\
   !*** F:/台词猜英雄/guess_the_hero/pages.json ***!
@@ -8910,7 +8910,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 46:
+/***/ 54:
 /*!**************************************************!*\
   !*** F:/台词猜英雄/guess_the_hero/util/power_util.js ***!
   \**************************************************/

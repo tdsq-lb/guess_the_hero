@@ -4,13 +4,13 @@
 			<lolProgress ref='progress' :currentPercent='currentPercent'></lolProgress>
 		</view>
 		<view class="games-player">
-			<player ref="player" :audioUrl = "audioUrl"></player>
+			<player ref="player" :audioUrl="audioUrl"></player>
 		</view>
-		<!-- 	<view class="games-option">
+		<view class="games-option">
 			<view @click="handleOptions(item,index)" v-for="(item,index) in optionArray" :key="index" :class="isactive == index ? isanswe:''">
 				{{item}}
 			</view>
-		</view> -->
+		</view>
 	</view>
 </template>
 
@@ -21,7 +21,6 @@
 		data() {
 			return {
 				currentPercent: 0, // 当前百分比
-				currentPercent1: 70,
 				toJSON: '',
 				audioUrl: '', // 音频链接
 				optionArray: [], // 选项组
@@ -52,31 +51,50 @@
 				this.optionArray = result.data.selectNameArr
 				this.answe = result.data.data.name
 			},
-			handleBtn() {
-				this.currentPercent += 20
+			// 回答正确或错误 初始化 canvas 播放器
+			initialization(e) {
+				if (e) {
+					this.currentPercent += 20
+				}
 				this.$refs.progress.init()
+				this.$refs.player.init()
+				this.isactive = 0
+				this.isanswe = ''
+				this.getAudio()
+				if (this.currentPercent >= 200) {
+					uni.showModal({
+						content: '挑战胜利',
+						confirmText: "获取奖励",
+						success: (res) => {
+							console.log('用户点击了确定')
+						}
+					})
+				}
+
 			},
 			handleOptions(e, index) {
 				console.log(e, index, '===========>>>')
 				this.isactive = index
 				if (this.answe == e) {
 					this.isanswe = "correct"
-					// uni.showModal({
-					// 	content: '答案正确',
-					// 	confirmText: "下一题",
-					// 	success: (res) => {
-					// 		console.log('用户点击了确定')
-					// 	}
-					// })
+					uni.showModal({
+						content: '答案正确',
+						confirmText: "下一题",
+						success: (res) => {
+							this.initialization(1)
+							console.log('用户点击了确定')
+						}
+					})
 				} else {
 					this.isanswe = "error"
-					// uni.showModal({
-					// 	content: '答案错误',
-					// 	confirmText: "确定",
-					// 	success: (res) => {
-					// 		console.log('用户点击了确定')
-					// 	}
-					// })
+					uni.showModal({
+						content: '答案错误',
+						confirmText: "确定",
+						success: (res) => {
+							this.initialization(0)
+							console.log('用户点击了确定')
+						}
+					})
 				}
 			}
 		},
@@ -106,7 +124,6 @@
 			left: 0;
 			top: 0;
 			z-index: 10;
-			// transform: translate(-50%);
 		}
 
 		.games-option {
@@ -117,6 +134,8 @@
 			margin: 0 auto;
 			padding: 20rpx;
 			box-sizing: border-box;
+			position: relative;
+			top: 50%;
 
 			display: flex;
 			flex-wrap: wrap;

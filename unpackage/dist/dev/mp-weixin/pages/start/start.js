@@ -97,7 +97,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var g0 = this.imgSrc("start_bg.jpg")
+  var g0 = this.staticUrl("images/start_bg.jpg")
   _vm.$mp.data = Object.assign(
     {},
     {

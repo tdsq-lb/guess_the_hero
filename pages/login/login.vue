@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<image class="content-bg" :src="this.imgSrc('index_bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad" />
+		<image class="content-bg" :src="this.staticUrl('images/index_bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad" />
 		<view class="head">
 			<image src="../../static/images/logo-public.png" mode="scaleToFill" lazy-load></image>
 		</view>

@@ -1,7 +1,7 @@
 <template>
 	<view style="position: relative;">
 		<view>
-			<canvas style="display: block width: 100%; height: 70vw"
+			<canvas style="display: block; width: 100%; height: 70vw"
 			 canvas-id="progress">
 			</canvas>
 		</view>

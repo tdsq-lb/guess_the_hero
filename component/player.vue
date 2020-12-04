@@ -1,7 +1,7 @@
 <template>
 	<view style="position: relative;">
 		<view>
-			<canvas style="display: block;width: 100%; height: 70vw;background-color: red;" canvas-id="player">
+			<canvas style="display: block;width: 100%; height: 70vw;" canvas-id="player">
 			</canvas>
 		</view>
 		<view class="progresstext" @click="audio.paused?play():audio.pause()">
@@ -56,10 +56,8 @@
 			}
 		},
 		created() {
-			this.init()
 			this.audio.obeyMuteSwitch = false // 不遵循系统静音开关
 			this.audio.onTimeUpdate(() => {
-				console.log(Math.round(this.audio.currentTime) / Math.round(this.audio.duration) * 100)
 				this.drawCircle(Math.round(this.audio.currentTime) / Math.round(this.audio.duration))
 			})
 			this.audio.onError((res) => {
@@ -77,6 +75,7 @@
 			this.audio.onEnded(() => {
 				this.paused = true
 				this.status = true
+				this.countdown()
 				console.log('音频播放结束 =====================>>>>')
 			})
 		},
@@ -86,14 +85,44 @@
 				this.audio.play()
 				this.Read = true
 			},
+			// 初始化
 			init() {
-				// console.log('我被执行了 =======>>>')
+				clearInterval(this.timer)
+				this.status = false
+				this.count = 10
+				this.paused = true
 				const screenWidth = uni.getSystemInfoSync().screenWidth
 				this.ctx = uni.createCanvasContext('player', this) // 初始化圆形
 				this.radius = (screenWidth / 2) * .4
 				this.circleX = screenWidth / 2
 				this.circleY = ((screenWidth) / 2) * .7
 				this.drawCircle(0)
+			},
+			// 倒计时
+			countdown() {
+				if (this.status) {
+					let num = 1
+					this.timer = setInterval(() => {
+						--this.count;
+						this.drawCircle(num -= 0.1)
+						if (this.count <= 0) {
+							clearInterval(this.timer)
+							this.status = false
+							this.count = 10
+							uni.showModal({
+								title: '提示',
+								content: '挑战失败',
+								success: (res) => {
+									if (res.confirm) {
+										console.log('用户点击确定');
+									} else if (res.cancel) {
+										console.log('用户点击取消');
+									}
+								}
+							});
+						}
+					}, 1000)
+				}
 			},
 			// 圆形
 			drawCircle(percentage) {
@@ -105,18 +134,15 @@
 				this.ctx.strokeStyle = "#F0F0F0";
 				this.ctx.stroke()
 				this.ctx.beginPath();
-				this.ctx.arc(this.circleX, this.circleY, this.radius, Math.PI * 3 /2,   Math.PI * (1 + percentage / 100) ,
+				this.ctx.arc(this.circleX, this.circleY, this.radius, Math.PI * 3 / 2, (Math.PI * 3 / 2 + Math.PI * 2 / 180 +
+						percentage * Math.PI * 2),
 					false);
-				// this.ctx.arc(this.circleX, this.circleY, this.radius, Math.PI * 3 / 2, (Math.PI * 3 / 2 + Math.PI * 2 / 180 +
-				// 		percentage * Math.PI * 2),
-				// 	false);
 				this.ctx.lineWidth = 10;
 				this.ctx.strokeStyle = "#EEBD44";
 				this.ctx.stroke();
 				this.ctx.restore()
 				this.ctx.draw()
 			}
-
 		},
 		watch: {
 			audioUrl: function(audioUrl, old) {
