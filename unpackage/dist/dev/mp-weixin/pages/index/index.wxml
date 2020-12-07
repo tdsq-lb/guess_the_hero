@@ -1,1 +1,1 @@
-<view><button class="index" type="default" data-event-opts="{{[['tap',[['handleBtn',['$event']]]]]}}" bindtap="__e">首页点击开始</button></view>
+<view class="index"><image class="index-bg" src="https://game.gtimg.cn/images/lol/act/img/skin/big157035.jpg" mode="aspectFill" lazy-load="{{true}}" data-event-opts="{{[['load',[['imageLoad',['$event']]]]]}}" bindload="__e"></image><view class="title">台词猜英雄，得免费皮肤</view><view class="index-content"></view></view>
