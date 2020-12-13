@@ -1,6 +1,9 @@
 <template>
 	<view class="start">
 		<image class="start-bg" :src="this.staticUrl('images/start_bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad"></image>
+		<view class="start-img">
+			<image src="../../static/images/img1.png" mode=""></image>
+		</view>
 		<view class="start-content">
 			<view class="start-btn" @click="handleBtn">
 				开始挑战
@@ -46,6 +49,13 @@
 		.start-bg {
 			width: 100%;
 			height: 100%;
+		}
+		
+		.start-img{
+			width: 70%;
+			height: 700rpx;
+			position: absolute;
+			top: 0;
 		}
 
 		.start-content {
