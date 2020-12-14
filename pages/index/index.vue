@@ -4,13 +4,13 @@
 			<view class="page-section-spacing">
 				<swiper class="swiper" :autoplay="true" :interval="2000" :duration="500" circular>
 					<swiper-item>
-						<image src="../../static/images/index_1.jpg" mode=""></image>
+						<image src="https://game.gtimg.cn/images/lol/act/a20201030kda/bg1.jpg" mode=""></image>
 					</swiper-item>
 					<swiper-item>
-						<image src="../../static/images/index_2.jpg" mode=""></image>
+						<image src="https://game.gtimg.cn/images/lol/act/a20200930dragon/bg-1.jpg" mode=""></image>
 					</swiper-item>
 					<swiper-item>
-						<image src="../../static/images/index_3.jpg" mode=""></image>
+						<image src="https://game.gtimg.cn/images/lol/act/a20201016odyssey/kv.jpg" mode=""></image>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -23,11 +23,14 @@
 		</view>
 		<view class="index_container">
 			<block v-if="index == 0">
-				<view class="item1"><span @click="handleBtn">立即挑战</span></view>
-				<view class="item2"><span>立即挑战</span></view>
+				<view class="item">
+					<image class="item-image" src="../../static/images/item_1.png" mode="widthFix"></image>
+					<span @click="handleBtn">立即挑战</span>
+				</view>
+<!-- 				<view class="item2"><span>立即挑战</span></view>
 				<view class="item3"><span>立即挑战</span></view>
 				<view class="item4"><span>立即挑战</span></view>
-				<view class="item5"><span>立即挑战</span></view>
+				<view class="item5"><span>立即挑战</span></view> -->
 			</block>
 			<block v-if="index == 1">
 				<span>神龙尊者</span>
@@ -147,6 +150,10 @@
 			padding: 20rpx;
 			padding-top: 0;
 			box-sizing: border-box;
+			
+			.item-image{
+				// wid
+			}
 
 			view {
 				width: 100%;
@@ -173,25 +180,25 @@
 				}
 			}
 
-			.item1 {
-				background: url(../../static/images/side-bar-on.png) no-repeat -20px -339px;
-			}
+			// .item1 {
+			// 	background: url(https://game.gtimg.cn/images/lol/act/a20201030kda/side-bar.png) no-repeat -20px -339px;
+			// }
 
-			.item2 {
-				background: url(../../static/images/side-bar-on.png) no-repeat -20px -87px;
-			}
+			// .item2 {
+			// 	background: url(https://game.gtimg.cn/images/lol/act/a20201030kda/side-bar.png) no-repeat -20px -87px;
+			// }
 
-			.item3 {
-				background: url(../../static/images/side-bar-on.png) no-repeat -20px -149px;
-			}
+			// .item3 {
+			// 	background: url(https://game.gtimg.cn/images/lol/act/a20201030kda/side-bar.png) no-repeat -20px -149px;
+			// }
 
-			.item4 {
-				background: url(../../static/images/side-bar-on.png) no-repeat -20px -213px;
-			}
+			// .item4 {
+			// 	background: url(https://game.gtimg.cn/images/lol/act/a20201030kda/side-bar.png) no-repeat -20px -213px;
+			// }
 
-			.item5 {
-				background: url(../../static/images/side-bar-on.png) no-repeat -20px -23px;
-			}
+			// .item5 {
+			// 	background: url(https://game.gtimg.cn/images/lol/act/a20201030kda/side-bar.png) no-repeat -20px -23px;
+			// }
 		}
 	}
 </style>

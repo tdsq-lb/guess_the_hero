@@ -1,12 +1,18 @@
 <template>
 	<view class="start">
-		<image class="start-bg" :src="this.staticUrl('images/start_bg.jpg')" mode="scaleToFill" lazy-load @load="imageLoad"></image>
-		<view class="start-img">
-			<image src="../../static/images/img1.png" mode=""></image>
-		</view>
 		<view class="start-content">
-			<view class="start-btn" @click="handleBtn">
-				开始挑战
+			<view class="start-the">
+				<image src="https://game.gtimg.cn/images/lol/act/a20201030kda/m-bg6.jpg" mode="aspectFill"></image>
+			</view>
+			<view class="start-box">
+				<image class="start-content-img" src="https://game.gtimg.cn/images/lol/act/a20201030kda/m-name5.png" mode=""></image>
+				<view class="start-content-text">
+					<p class="gold">79</p>
+					<p class="price-qb">[ Q币 ] </p>
+				</view>
+				<view class="start-btn" @click="handleBtn">
+					<image src="https://game.gtimg.cn/images/lol/act/a20201030kda/btn-buy.png" mode=""></image>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -20,9 +26,9 @@
 			}
 		},
 		created() {
-			uni.showLoading({
-				title: '加载中',
-			});
+			// uni.showLoading({
+			// 	title: '加载中',
+			// });
 		},
 		methods: {
 			handleBtn() {
@@ -40,72 +46,93 @@
 
 <style lang="scss">
 	.start {
-		
 		width: 100%;
 		height: 100%;
 		position: relative;
-
-
-		.start-bg {
-			width: 100%;
-			height: 100%;
-		}
-		
-		.start-img{
-			width: 70%;
-			height: 700rpx;
-			position: absolute;
-			top: 0;
-		}
+		background-color: #000000;
 
 		.start-content {
 			width: 100%;
-			height: 80rpx;
-			text-align: center;
-			line-height: 80rpx;
-			position: absolute;
-			top: 60%;
-			left: 50%;
-			transform: translate(-50%, -60%);
-			display: flex;
-			justify-content: center;
-		}
-
-		.start-btn {
-			width: 60%;
 			height: 100%;
-			background-image: url(../../static/images/login_btn_press.png);
-			background-size: 100% 100%;
-			background-repeat: no-repeat;
-			color: #FFFFFF;
-			-webkit-animation-name: scaleDraw;
-			/*关键帧名称*/
-			-webkit-animation-timing-function: ease-in-out;
-			/*动画的速度曲线*/
-			-webkit-animation-iteration-count: infinite;
-			/*动画播放的次数*/
-			-webkit-animation-duration: 5s;
-		}
+			overflow: hidden;
 
-		@keyframes scaleDraw {
-
-			/*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
-			0% {
-				transform: scale(1);
-				/*开始为原始大小*/
+			.start-the {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: -14rpx;
 			}
 
-			25% {
-				transform: scale(1.1);
-				/*放大1.1倍*/
-			}
+			.start-box {
+				position: absolute;
+				width: 100%;
+				height: auto;
+				top: 70%;
+				transform: translate(0, -70%);
 
-			50% {
-				transform: scale(1);
-			}
+				.start-content-img {
+					width: 60%;
+					height: 120rpx;
+					display: block;
+				}
 
-			75% {
-				transform: scale(1.1);
+				.start-content-text {
+					width: 250rpx;
+					height: auto;
+					margin-left: 200rpx;
+					position: absolute;
+					top: 80rpx;
+					-webkit-background-clip: text;
+					color: transparent;
+					background-image: linear-gradient(#dbfde5, #a8b8fa);
+					display: flex;
+					align-items: center;
+
+					.gold {
+						font-size: 100rpx;
+						font-weight: bold;
+						margin-right: 20rpx;
+					}
+
+					.price-qb {
+						font-size: 30rpx;
+					}
+				}
+
+				.start-btn {
+					width: 50%;
+					height: 110rpx;
+					margin: 200rpx auto 0;
+					-webkit-animation-name: scaleDraw;
+					/*关键帧名称*/
+					-webkit-animation-timing-function: ease-in-out;
+					/*动画的速度曲线*/
+					-webkit-animation-iteration-count: infinite;
+					/*动画播放的次数*/
+					-webkit-animation-duration: 5s;
+				}
+
+				@keyframes scaleDraw {
+
+					/*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
+					0% {
+						transform: scale(1);
+						/*开始为原始大小*/
+					}
+
+					25% {
+						transform: scale(1.1);
+						/*放大1.1倍*/
+					}
+
+					50% {
+						transform: scale(1);
+					}
+
+					75% {
+						transform: scale(1.1);
+					}
+				}
 			}
 		}
 	}

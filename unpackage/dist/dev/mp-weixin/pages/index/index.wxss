@@ -111,19 +111,4 @@
   background: rgba(0, 0, 0, 0.65);
   text-align: center;
 }
-.index .index_container .item1.data-v-57280228 {
-  background: url(/static/images/side-bar-on.png) no-repeat -20px -339px;
-}
-.index .index_container .item2.data-v-57280228 {
-  background: url(/static/images/side-bar-on.png) no-repeat -20px -87px;
-}
-.index .index_container .item3.data-v-57280228 {
-  background: url(/static/images/side-bar-on.png) no-repeat -20px -149px;
-}
-.index .index_container .item4.data-v-57280228 {
-  background: url(/static/images/side-bar-on.png) no-repeat -20px -213px;
-}
-.index .index_container .item5.data-v-57280228 {
-  background: url(/static/images/side-bar-on.png) no-repeat -20px -23px;
-}
 

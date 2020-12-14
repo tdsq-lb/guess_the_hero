@@ -21,7 +21,9 @@
 			"style": {}
 		}, {
 			"path": "pages/start/start",
-			"style": {}
+			"style": {
+				"navigationStyle":"custom"
+			}
 
 		}, {
 			"path": "pages/games/games",
